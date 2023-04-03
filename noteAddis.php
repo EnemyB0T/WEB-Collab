@@ -4,7 +4,7 @@ include('config.php');
 
 if(isset($_SESSION['userID'])) {
   // If the user is logged in, show the note form
-  echo '<h1>Add Note</h1>';
+  //echo '<h1>Add Note</h1>';
 
   if(isset($_POST['submit'])) {
     // If the form is submitted, insert the note into the database
@@ -25,7 +25,8 @@ if(isset($_SESSION['userID'])) {
 
   
   // retrieve the note from the database
-$sql = "SELECT * FROM note WHERE userID='$userID'";
+$userID = $_SESSION['userID'];
+$sql = "SELECT * FROM note WHERE userID=$userID";
 $result = mysqli_query($conn, $sql);
 $notes = array();
 
@@ -33,7 +34,7 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $notes[] = $row;
     }
-} else {
+} else { 
     $notes = null;
 }
 
@@ -104,7 +105,7 @@ mysqli_close($conn);
                     <h5 class="card-title">Add title</h5>
 
                     <div class="form-group my-3">
-                        <input type="email" class="form-control" id="addTitle" placeholder="Enter your title" value="<?php echo '<input type="text"' ?>>
+                        <input type="text" class="form-control" id="addTitle" placeholder="Enter your title" name="title">
                     </div>
 
                     <h5 class="card-title">Add a note</h5>
@@ -121,6 +122,20 @@ mysqli_close($conn);
         </div>
 
     </div>
+
+    <?php if ($notes): ?>
+		<ul>
+		<?php foreach ($notes as $note): ?>
+			<li>
+				<h3><?php echo $note['title']; ?></h3>
+				<p><?php echo $note['content']; ?></p>
+			</li>
+		<?php endforeach; ?>
+		</ul>
+	<?php else: ?>
+		<p>No notes found.</p>
+	<?php endif; ?>
+
     <!-- Bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

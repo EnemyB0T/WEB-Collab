@@ -6,17 +6,16 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['username'])) {
-    header("Location: index.php");
+if (isset($_SESSION['userID'])) {
+    header("Location: loginCode.php");
 }
  
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = md5($_POST['password']);
-    $cpassword = md5($_POST['cpassword']);
  
-    if ($password == $cpassword) {
+    if ($password) {
         $sql = "SELECT * FROM useraccount WHERE emailAddress='$email'";
         $result = mysqli_query($conn, $sql);
         if (!$result->num_rows > 0) {
@@ -66,7 +65,7 @@ if (isset($_POST['submit'])) {
         <div class="mainContainer">
             <!-- Username -->
             <label for="email">Your email:</label>
-            <input type="text" placeholder="Enter email" name="email" value="<?php echo $username; ?>"  required>
+            <input type="text" placeholder="Enter email" name="email" value="<?php echo $emailAddress; ?>"  required>
 
             <br><br>
 
@@ -78,13 +77,13 @@ if (isset($_POST['submit'])) {
 
             <!-- Code confirm -->
             <label for="code">Your code:</label> 
-            <input type="Code" placeholder="Enter code" name="Code confirm" required>
+            <input type="Code" placeholder="Enter code" name="Code confirm">
 
             <br><br>
 
             <!-- Name -->
             <label for="full name">Your full name:</label>
-            <input type="text" placeholder="Enter full name" name="full name" value="<?php echo $username; ?>" required>
+            <input type="text" placeholder="Enter full name" name="username" value="<?php echo $username; ?>" required>
 
             <!-- checklist -->
             <div class="subcontainer">
