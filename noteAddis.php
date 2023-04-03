@@ -123,18 +123,26 @@ mysqli_close($conn);
 
     </div>
 
+    <!-- Display notes -->
+
     <?php if ($notes): ?>
 		<ul>
 		<?php foreach ($notes as $note): ?>
 			<li>
 				<h3><?php echo $note['title']; ?></h3>
 				<p><?php echo $note['content']; ?></p>
+                <form action='delete_note.php?noteID="<?php echo $noteID['noteID']; ?>"' method="post">
+                    <input type="hidden" name="name" value="<?php echo $noteID['noteID']; ?>">
+                    <input type="submit" name="submit" value="Delete">
+                </form>
 			</li>
 		<?php endforeach; ?>
 		</ul>
 	<?php else: ?>
 		<p>No notes found.</p>
 	<?php endif; ?>
+
+
 
     <!-- Bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
