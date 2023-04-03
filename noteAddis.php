@@ -110,9 +110,9 @@ mysqli_close($conn);
 
                     <h5 class="card-title">Add a note</h5>
                     <div class="form-group">
-                        <textarea class="form-control" id="addTxt" rows="3" placeholder="Enter your Note"></textarea>
+                        <textarea class="form-control" id="addTxt" rows="3" placeholder="Enter your Note" name="content"></textarea>
                     </div>
-                    <button class="btn btn-success my-3" id="addBtn">Add Note</button>
+                    <button class="btn btn-success my-3" id="addBtn" name="submit">Add Note</button>
                 </div>
             </div>
             <hr>
