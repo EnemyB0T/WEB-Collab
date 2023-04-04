@@ -6,11 +6,17 @@ body
   color:rgb(0, 0, 0);
 }
 
+.form-header{
+  font-size: 3rem;
+}
 
 h1{
     text-align: center;
 }
 
+h3{
+  font-size: 1.5rem;
+}
 
 form{
     width:35rem;
@@ -47,6 +53,19 @@ button:hover {
     cursor: pointer;
 }
 
+.submit-button{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  
+}
+
+.code-confirm{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .button::after {
   display: block;
   font-size: 14px;
@@ -77,18 +96,18 @@ button:hover {
     margin-bottom: 12px;
 }
 
-span.lupapass a {
+span.sudahada a {
     float: right;
     color: whitesmoke;
     padding-top: 16px;
     
   }
 
-.lupapass a{
+.sudahada a{
     color: rgb(74, 146, 235);
   }
   
-.lupapass a:link{
+.sudahada a:link{
     text-decoration: none;
     text-align: center;
   }
