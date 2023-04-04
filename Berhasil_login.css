@@ -1,0 +1,48 @@
+body 
+{
+  font-family:sans-serif; 
+  background: -webkit-linear-gradient(to right, #155799, #159957);  
+  background: linear-gradient(to right, #995915, #998e15);  
+  color:rgb(0, 0, 0);
+}
+
+.form-header{
+  font-size: 3rem;
+}
+
+h1{
+    text-align: center;
+    
+}
+
+h3{
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+form{
+  width:25rem;
+  margin: auto;
+  color:rgb(0, 0, 0);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(0, 217, 255, 0.406);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  padding: 20px 25px;
+}
+
+
+
+
+
+
+
+
+
+
+  
