@@ -1,0 +1,145 @@
+body 
+{
+  font-family:sans-serif; 
+  background: -webkit-linear-gradient(to right, #155799, #159957);  
+  background: linear-gradient(116.82deg, #F5E8C2 0%, #F2EAD3 100%);  
+  color:rgb(0, 0, 0);
+}
+
+.form-header{
+  font-size: 3rem;
+}
+
+h1{
+    text-align: center;
+    
+}
+
+h3{
+  font-size: 1.5rem;
+}
+
+form{
+    width:35rem;
+    margin: auto;
+    color:rgb(0, 0, 0);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background: linear-gradient(90.75deg, #4588BB -3.36%, #25A8B7 104.42%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 20px 25px;
+}
+
+input[type=text], input[type=password]{
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 15px 18px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #030804;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 5px;
+    margin: 7px 0;
+    width: 50%;
+    font-size: 18px;
+    
+  }
+
+button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.submit-button{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  
+}
+
+.code-confirm{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.button::after {
+  display: block;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.headingsContainer{
+    text-align: center;
+}
+
+.headingsContainer p{
+    color: rgb(0, 0, 0);
+}
+.mainContainer{
+    padding: 16px;
+}
+
+
+.subcontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subcontainer a{
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+span.lupapass a {
+    float: right;
+    color: whitesmoke;
+    padding-top: 16px;
+    
+  }
+
+.lupapass a{
+    color: rgb(74, 146, 235);
+  }
+  
+.lupapass a:link{
+    text-decoration: none;
+    text-align: center;
+  }
+
+  span.keregister a {
+    float: right;
+    color: whitesmoke;
+    padding-top: 16px;
+    
+  }
+
+.keregister a{
+    color: rgb(74, 146, 235);
+  }
+  
+.keregister a:link{
+    text-decoration: none;
+    text-align: center;
+  }
+
+
+  /* Media queries for the responsiveness of the page */
+  @media screen and (max-width: 600px) {
+    form{
+      width: 25rem;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+    form{
+      width: 20rem;
+    }
+  }
