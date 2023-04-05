@@ -76,6 +76,8 @@ mysqli_close($conn);
 
     </div>
 
+    <!-- This is a comment by Jesus -->
+
 
     <div class="container">
         <!-- main-container -->
@@ -109,24 +111,22 @@ mysqli_close($conn);
     </div>
 
     <!-- Display notes -->
-
-    <?php if ($notes): ?>
-		<ul>
-		<?php foreach ($notes as $note): ?>
-			<li>
-				<h3><?php echo $note['title']; ?></h3>
-				<p><?php echo $note['content']; ?></p>
-                <form action='delete_note.php?noteID="<?php echo $note['noteID']; ?>"' method="post">
-                    <input type="hidden" name="name" value="<?php echo $note['noteID']; ?>">
-                    <input type="submit" name="submit" value="Delete">
-                </form>
-			</li>
-		<?php endforeach; ?>
-		</ul>
-	<?php else: ?>
-		<p>No notes found.</p>
-	<?php endif; ?>
-
+<?php
+    // display the notes
+if ($notes) {
+    foreach ($notes as $note) {
+        echo '<div class="card">';
+        echo '<div class="card-body">';
+        echo '<h5 class="card-title">' . $note['title'] . '</h5>';
+        echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
+        echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo '<p>You have no notes yet.</p>';
+}
+?>
 
 
     
