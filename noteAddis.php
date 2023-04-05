@@ -85,17 +85,19 @@ mysqli_close($conn);
             </h1>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Add title</h5>
+                    <form method="post" action="addnote.php">
+                        <h5 class="card-title">Add title</h5>
 
-                    <div class="form-group my-3">
-                        <input type="text" class="form-control" id="addTitle" placeholder="Enter your title" name="title">
-                    </div>
+                        <div class="form-group my-3">
+                            <input type="text" class="form-control" id="addTitle" placeholder="Enter your title" name="title">
+                        </div>
 
-                    <h5 class="card-title">Add a note</h5>
-                    <div class="form-group">
-                        <textarea class="form-control" id="addTxt" rows="3" placeholder="Enter your Note" name="content"></textarea>
-                    </div>
-                    <button class="btn btn-success my-3" id="addBtn" name="submit">Add Note</button>
+                        <h5 class="card-title">Add a note</h5>
+                        <div class="form-group">
+                            <textarea class="form-control" id="addTxt" rows="3" placeholder="Enter your Note" name="content"></textarea>
+                        </div>
+                        <button class="btn btn-success my-3" id="addBtn" name="submit">Add Note</button>
+                    </form> 
                 </div>
             </div>
             <hr>
@@ -127,12 +129,7 @@ mysqli_close($conn);
 
 
 
-    <!-- Bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
-    <script src="index.js"></script>
+    
 
     <button onclick="logout()">Logout</button>
 
