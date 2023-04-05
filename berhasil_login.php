@@ -5,7 +5,7 @@ include 'config.php';
 session_start();
 
 if (!isset($_SESSION['userID'])) {
-    header("Location: index.php");
+    header("Location: loginCode.php");
 }
 
 $userID = $_SESSION['userID'];

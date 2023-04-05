@@ -6,23 +6,6 @@ if(isset($_SESSION['userID'])) {
   // If the user is logged in, show the note form
   //echo '<h1>Add Note</h1>';
 
-  if(isset($_POST['submit'])) {
-    // If the form is submitted, insert the note into the database
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $userID = $_SESSION['userID'];
-    $createdAt = date('Y-m-d H:i:s');
-
-    $sql = "INSERT INTO note (title, content, userID, createdAt) VALUES ('$title', '$content', '$userID', '$createdAt')";
-    $result = mysqli_query($conn, $sql);
-
-    if($result) {
-      echo '<p>Note added successfully!</p>';
-    } else {
-      echo '<p>Error adding note: ' . mysqli_error($conn) . '</p>';
-    }
-  }
-
   
   // retrieve the note from the database
 $userID = $_SESSION['userID'];
@@ -131,8 +114,8 @@ mysqli_close($conn);
 			<li>
 				<h3><?php echo $note['title']; ?></h3>
 				<p><?php echo $note['content']; ?></p>
-                <form action='delete_note.php?noteID="<?php echo $noteID['noteID']; ?>"' method="post">
-                    <input type="hidden" name="name" value="<?php echo $noteID['noteID']; ?>">
+                <form action='delete_note.php?noteID="<?php echo $note['noteID']; ?>"' method="post">
+                    <input type="hidden" name="name" value="<?php echo $note['noteID']; ?>">
                     <input type="submit" name="submit" value="Delete">
                 </form>
 			</li>
