@@ -79,6 +79,7 @@ if (isset($_POST['submit'])) {
             <div class="code-confirm">
                 <label for="code">Your&nbspcode:</label> 
                 <input type="Code" placeholder="Enter code" name="Code confirm">
+                <button class="sbutton">Send Code</button>
             </div>
             <br><br>
 
