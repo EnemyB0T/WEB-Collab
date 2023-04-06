@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
 
             <!-- Code confirm -->
             <div class="code-confirm">
-                <label for="code">Your code:</label> 
+                <label for="code">Your&nbspcode:</label> 
                 <input type="Code" placeholder="Enter code" name="Code confirm">
             </div>
             <br><br>
