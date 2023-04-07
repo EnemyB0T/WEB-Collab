@@ -34,16 +34,16 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Login Page.css">
+    <link rel="stylesheet" href="login_page.css">
     <title>Login page in HTML</title>
 </head>
 <body>
-    <h1>Quill</h1>
+    <h1 class="form-header">Quill</h1>
     <form action="" method="POST" class="login-email">
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Login</h3>
-            <p>Silakan mengisi pada kolom dibawah ini!</p>
+            <p>Silakan isi pada kolom dibawah ini!</p>
         </div>
 
         <!-- Main container for all inputs -->
@@ -66,13 +66,13 @@ if (isset($_POST['submit'])) {
                   <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Anonymous mode </p>
             </div>
 
-            <!-- Submit button -->
-            <button type="submit" class="btn" name="submit">Login</button>
-            <!-- Back button -->
-            <button type="back">Back</button>
+            <div class="submit-button">
+                <!-- Submit button -->
+                <button type="submit" class="btn" name="submit">Login</button>
+            </div>
             <!-- Sign up link -->
-            <p class="lupapass"><p align="center"> Forgot Password?</p>  <a href="#"><p align="center">click here!</p></a></p>
-
+            <p class="lupapass"><a href="#"><p align="center">Forgot password?</p></a></p>
+            <p class="keregister"><a href="registerCode.php"><p align="center">Belum punya akun?</p></a></p>
         </div>
 
     </form>

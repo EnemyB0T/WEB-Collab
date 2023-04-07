@@ -49,16 +49,16 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Register Page.css">
+    <link rel="stylesheet" href="register_page.css">
     <title>Register page in HTML</title>
 </head>
 <body>
-    <h1>Quill</h1>
+<h1 class="form-header">Quill</h1>
     <form action="" method="POST" class="login-email">
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Register</h3>
-            <p>Silakan mengisi pada kolom dibawah ini!</p>
+            <p>Silakan isi pada kolom dibawah ini!</p>
         </div>
 
         <!-- Main container for all inputs -->
@@ -76,9 +76,11 @@ if (isset($_POST['submit'])) {
             <br><br>
 
             <!-- Code confirm -->
-            <label for="code">Your code:</label> 
-            <input type="Code" placeholder="Enter code" name="Code confirm">
-
+            <div class="code-confirm">
+                <label for="code">Your&nbspcode:</label> 
+                <input type="Code" placeholder="Enter code" name="Code confirm">
+                <button class="sbutton">Send Code</button>
+            </div>
             <br><br>
 
             <!-- Name -->
@@ -93,10 +95,11 @@ if (isset($_POST['submit'])) {
                   <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Update dan promosi Quill akan di kirimkan lewat email </p>
             </div>
 
+            <div class="submit-button">
             <!-- Submit button -->
-            <button  name="submit">Register</button>
-            <!-- Back button -->
-            <button type="back">Back</button>
+                <button  name="submit">Register</button>
+
+            </div>
             <!-- Sign up link -->
             <p class="lupapass"><p align="center"> Already got a member?</p>  <a href="loginCode.php"><p align="center">Log in here!</p></a></p>
 

@@ -56,7 +56,7 @@ mysqli_close($conn);
     <div id="navbar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand">Notes</a>
+                <a class="navbar-brand">Quill /div></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,7 @@ mysqli_close($conn);
         <!-- main-container -->
         <div class="container my-3">
             <h1>
-                <marquee>Welcome To My Notes Website</marquee>
+                
             </h1>
             <div class="card">
                 <div class="card-body">
