@@ -3,7 +3,7 @@
 body{
 position: relative;
 width: 1440px;
-height: 1096px;
+height: 2000px;
 
 background: linear-gradient(116.82deg, #F5E8C2 0%, #F2EAD3 100%);
 mix-blend-mode: normal;
@@ -183,8 +183,6 @@ line-height: 62px;
 color: #504C44;
 }
 
-
-
 .button {
 align-items: flex-end;
 display: flex;
@@ -358,6 +356,31 @@ transform: scale(1.1);
 opacity: 1;
 box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); 
 background-color: #FFC107;
+}
+
+footer {
+  position: absolute;
+  width: 130%;
+  height: 15vh;
+  bottom: 0;
+  left: -8px;
+  right: 0;
+  background: linear-gradient(90.75deg, #4588BB -3.36%, #25A8B7 104.42%);
+  padding: 20px;
+  
+}
+
+
+footer a {
+  position: absolute;
+  color: blue;
+  text-decoration: none;
+  
+}
+
+footer a:hover {
+  color: red;
+  text-decoration: underline;
 }
 
   /* Media queries for the responsiveness of the page */
