@@ -382,14 +382,14 @@ top: 13px;
 }
 
 .footer1 a {
-  position: absolute;
-  width: 130%;
-  height: 25vh;
-  bottom: 0;
-  left: -8px;
-  right: 0;
-  background: linear-gradient(90.75deg, #4588BB -3.36%, #25A8B7 104.42%);
-  padding: 20px;
+position: absolute;
+width: 130%;
+height: 25vh;
+bottom: 0;
+left: -8px;
+right: 0;
+background: linear-gradient(90.75deg, #4588BB -3.36%, #25A8B7 104.42%);
+padding: 20px;
   
 }
 .footertulisan1 a {
@@ -402,11 +402,37 @@ gap: 40px;
 height: 0;
 left: 300px ;
 min-width: 480px;
-top: 13px;
+top: 130px;
 font-size: 25px;
 }
 
+.footertulisan2 a {
+position: absolute;
+color: rgb(3, 3, 3);
+text-decoration: none;
+align-items: flex-end;
+display: flex;
+gap: 40px;
+height: 0;
+left: 830px ;
+min-width: 480px;
+top: 130px;
+font-size: 25px; 
+}
 
+.footertulisan3 a {
+position: absolute;
+color: rgb(3, 3, 3);
+text-decoration: none;
+align-items: flex-end;
+display: flex;
+gap: 40px;
+height: 0;
+left: 1460px ;
+min-width: 480px;
+top: 130px;
+font-size: 25px; 
+}
 
   /* Media queries for the responsiveness of the page */
   @media screen and (max-width: 600px) {
