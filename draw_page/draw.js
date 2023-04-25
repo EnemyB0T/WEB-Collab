@@ -82,3 +82,26 @@ function draw(event) {
 
   ctx.stroke();
 }
+
+function saveDrawing() {
+
+  alert("get from sketchpad");
+  console.log(canvas);
+  dataURL = canvas.toDataURL("image/png");
+  alert("saved to local file");
+  console.log('Data URL:', dataURL);
+  $.ajax({
+    type: "POST",
+    url: "save_drawing.php",
+    data: { 
+      imgBase64: dataURL
+    }
+    
+  }).done(function(o) {
+    console.log('saved'); 
+  }).fail(function(jqXHR, textStatus, errorThrown) {
+    console.log(textStatus + ': ' + errorThrown);
+  });
+
+};
+document.getElementById('saveBtn').addEventListener('click', saveDrawing);
