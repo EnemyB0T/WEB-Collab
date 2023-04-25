@@ -311,9 +311,9 @@ header {
 
 footer {
     position: absolute;
-    bottom: 0;
+    bottom:-100px;
     left: 0;
-    right: 0;
+    right: -200px;
     background: linear-gradient(90.75deg, #4588BB -3.36%, #25A8B7 104.42%);
 }
 
