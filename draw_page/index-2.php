@@ -1,3 +1,16 @@
+<?php
+    // include the config file
+    include('../config.php');
+
+    session_start();
+
+    if (!isset($_SESSION['userID'])) {
+        header("Location: ../loginCode.php");
+    }
+
+    
+?>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -101,5 +114,10 @@
       <canvas id="sketchpad"></canvas>
       <script src="draw.js"></script>
     </div>
+    <a href="../noteAddis.php" class="btn btn-primary">Back</a>
+    <form action="save_drawing.php">
+      <input type="submit" value="save" id="saveBtn" onclick="saveDrawing()">
+    </form>
+    
   </body>
 </html>

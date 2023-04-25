@@ -31,7 +31,7 @@ if (mysqli_num_rows($result) > 0) {
   exit();
 }
 
-mysqli_close($conn);
+
 ?>
 
 <!doctype html>
@@ -113,22 +113,33 @@ mysqli_close($conn);
     <!-- Display notes -->
 <?php
     // display the notes
-if ($notes) {
-    foreach ($notes as $note) {
-        echo '<div class="card">';
-        echo '<div class="card-body">';
-        echo '<h5 class="card-title">' . $note['title'] . '</h5>';
-        echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
-        echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
-        echo '</div>';
-        echo '</div>';
+    if ($notes) {
+        foreach ($notes as $note) {
+            echo '<div class="card">';
+            echo '<div class="card-body">';
+            echo '<h5 class="card-title">' . $note['title'] . '</h5>';
+            echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
+            echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
+            echo '</div>';
+            echo '</div>';
+        }
+    } else {
+        echo '<p>You have no notes yet.</p>';
     }
-} else {
-    echo '<p>You have no notes yet.</p>';
-}
 ?>
 
-
+    <?php
+    $sql = "SELECT * FROM drawings WHERE userID = $userID";
+    $result = $conn->query($sql);
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<img src="data:image/png;base64,' . base64_encode($row['image_data']) . '" alt="Drawing"/>';
+        }
+    } else {
+        echo "No drawings found.";
+    }
+    mysqli_close($conn);
+    ?>
     
 
     <button onclick="logout()">Logout</button>
@@ -139,6 +150,7 @@ if ($notes) {
 			window.location.href = "logout.php";
 		}
 	</script>
+    <a href="draw_page/index-2.php" class="btn btn-primary">Drawing</a>
 </body>
 
 </html>
