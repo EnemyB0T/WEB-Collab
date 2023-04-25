@@ -39,12 +39,13 @@ body {
   font-size: 1em;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
-}
+}   
 
 .CTA h1 {
   color: #fff;
   margin-top: 10px;
   margin-left: 19px;
+  font-size: 1em;
 }
 
 .CTA:hover {
@@ -68,9 +69,11 @@ nav a {
   list-style: none;
   padding: 35px;
   color: #fff;
-  font-size: 1.1em;
+  font-size: 2.1em;
   display: block;
   transition: all 0.3s ease-in-out;
+  margin-left: 30px;
+  margin-top: 30px
 }
 
 nav a:hover {
@@ -89,7 +92,7 @@ nav a:first-child {
 
 .rightbox {
   float: right;
-  width: 60%;
+  width: 65%;
   height: 100%;
 }
 
@@ -104,10 +107,12 @@ nav a:first-child {
   width: 70%;
 }
 
+
+
 h1 {
   font-family: "Montserrat", sans-serif;
   color: #7ed386;
-  font-size: 1em;
+  font-size: 3em;
   margin-top: 40px;
   margin-bottom: 35px;
 }
@@ -117,10 +122,11 @@ h2 {
   font-family: "Roboto", sans-serif;
   width: 80%;
   text-transform: uppercase;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 1px;
   margin-left: 2px;
   margin-right: 10px;
+  margin-top: 40px;
 }
 
 .input, p {
@@ -131,7 +137,7 @@ h2 {
   border-top: 0;
   width: 80%;
   font-family: "Montserrat", sans-serif;
-  font-size: 0.7em;
+  font-size: 1em;
   padding: 7px 0;
   color: #070707;
 }
@@ -145,7 +151,7 @@ span {
   float: right;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 15px;
   border: none;
   color: #3fb6a8;
   padding:7px 15x;
