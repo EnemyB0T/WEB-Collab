@@ -12,13 +12,59 @@
     />
     <!-- CSS -->
     <link rel="stylesheet" href="editprofile.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   </head>
   <body>
+
+    <header>
+      <h6 class="logoQuill"><a href="homepage.html">Quill</a></h6>
+      <nav class="navbar">
+          <button class="btnNotes"><h3 href="noteAddis.php">Notes</h3></button>
+      </nav>
+      <img class="userpic" src="profile-images/userpic.png" onclick="toggleMenu()">
+
+      <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+              <div class="user-info">
+                  <img src="profile-images/userpic.png">
+                  <h4>Username</h4>
+              </div>
+              <hr>
+
+              <a href="editprofile.html" class="sub-menu-link">
+                  <img src="profile-images/profile.png">
+                  <h5>Edit Profile</h5>
+                  <span>></span>
+              </a>
+              <a href="#" class="sub-menu-link">
+                  <img src="profile-images/setting.png">
+                  <h5>Settings & Privacy</h5>
+                  <span>></span>
+              </a>
+              <a href="#" class="sub-menu-link">
+                  <img src="profile-images/help.png">
+                  <h5>Help & Support</h5>
+                  <span>></span>
+              </a>
+              <a href="#" class="sub-menu-link">
+                  <img src="profile-images/logout.png">
+                  <h5>Logout</h5>
+                  <span>></span>
+              </a>
+          </div>
+      </div>
+  </header>
+
+
     <div class="container">
       <div id="logo">
         <h1 class="logo">Quill</h1>
         <div class="CTA">
-          <h1>Back</h1>
+          <a href="homepageLogged.html"><h1>Back</h1></a>
         </div>
       </div>
 
@@ -102,5 +148,36 @@
         })
             
     </script>
+
+    <script>
+      let subMenu = document.getElementById("subMenu");
+
+      function toggleMenu(){
+          subMenu.classList.toggle("open-menu");
+      }
+  </script>
   </body>
+
+  <footer>
+    <div class="footer-container">
+        <div class="socialIcons">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-discord"></i></a>
+        </div>
+        <div class="footer-nav">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Terms</a></li>
+                <li><a href="">FAQ</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <a>Quill &copy;2023</a>
+    </div>
+</footer>
+
 </html>
