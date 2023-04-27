@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Nunito:wght@400;900&family=Roboto:wght@400;900&display=swap");
 
 body {
-  background: linear-gradient(to right, #3fb6a8, #7ed386);
+  background: linear-gradient(116.82deg, #F4E4B7 -50%, #F2EAD3 104.42%);
   overflow: hidden;
   box-sizing: border-box;
 }
+
+
 
 .container {
   background: #fff;
@@ -21,7 +23,7 @@ body {
   margin-right: 12px;
   margin-top: 12px;
   font-family: "Nunito Sans", sans-serif;
-  color: #3dbb3d;
+  color: #a79d70;
   font-weight: 900;
   font-size: 2.5rem;
   letter-spacing: 1px;
@@ -35,7 +37,7 @@ body {
   margin-bottom: 90px;
   position: absolute;
   z-index: 1;
-  background: #7ed386;
+  background: #a79d70;
   font-size: 1em;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
@@ -49,7 +51,7 @@ body {
 }
 
 .CTA:hover {
-  background: #3fb6a8;
+  background:#a79d70;
   transform: scale(1.1);
   box-shadow: 3px 3px 10px rgba(119, 119, 119, 0.5);
 }
@@ -61,14 +63,14 @@ body {
   position: absolute;
   width: 15%;
   height: 110%;
-  background: #7ed386;
+  background: linear-gradient(90.75deg, #4588BB -3.36%, #25A8B7 104.42%);
   box-shadow: 3px 3px 10px rgba(119, 119, 119, 0.5);
 }
 
 nav a {
   list-style: none;
   padding: 35px;
-  color: #fff;
+  color: #f5eeb6;
   font-size: 2.1em;
   display: block;
   transition: all 0.3s ease-in-out;
@@ -77,7 +79,7 @@ nav a {
 }
 
 nav a:hover {
-  color: #3fb6a8;
+  color: #a79d70;
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -87,7 +89,7 @@ nav a:first-child {
 }
 
 .active {
-  color: #3fb6a8;
+  color: #a79d70;
 }
 
 .rightbox {
@@ -111,7 +113,7 @@ nav a:first-child {
 
 h1 {
   font-family: "Montserrat", sans-serif;
-  color: #7ed386;
+  color: #a79d70;
   font-size: 3em;
   margin-top: 40px;
   margin-bottom: 35px;
