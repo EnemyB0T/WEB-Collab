@@ -120,6 +120,7 @@ if (mysqli_num_rows($result) > 0) {
             echo '<h5 class="card-title">' . $note['title'] . '</h5>';
             echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
             echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
+            echo '<a href="edit_note.php?noteID=' . $note['noteID'] . '"class="btn btn-primary">Edit</a>';
             echo '</div>';
             echo '</div>';
         }

@@ -1,8 +1,8 @@
 <?php 
  
 $server = "localhost";
-$user = "root";
-$pass = "";
+$user = "testAdmin";
+$pass = "IDontKnow";
 $database = "notetakingapp";
  
 $conn = mysqli_connect($server, $user, $pass, $database);
