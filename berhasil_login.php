@@ -38,7 +38,7 @@ header("Refresh: 1; url=homepageLogged.php");
 
         <!-- Main container for all inputs -->
         <form action="" method="POST" class="login-email">
-            <?php echo "<h1>Selamat Datang, " . $username ."!". "</h1>"; ?>
+            <?php echo "<h1>Welcome, " . $username ."!". "</h1>"; ?>
 
             <div class="input-group">
             <a href="logout.php" class="btn">Logout</a>

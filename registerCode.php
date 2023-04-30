@@ -58,7 +58,7 @@ if (isset($_POST['submit'])) {
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Register</h3>
-            <p>Silakan isi pada kolom dibawah ini!</p>
+            <p>Please fill the form to register</p>
         </div>
 
         <!-- Main container for all inputs -->
@@ -90,9 +90,9 @@ if (isset($_POST['submit'])) {
             <!-- checklist -->
             <div class="subcontainer">
                 <label>
-                  <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Setuju dengan syarat dan ketentuan berlaku </p>
+                  <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Agree with our <a href="#">Terms and Condition</a> </p>
                 </label>
-                  <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Update dan promosi Quill akan di kirimkan lewat email </p>
+                  <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Updates and promotion will be sent via email </p>
             </div>
 
             <div class="submit-button">

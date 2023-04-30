@@ -33,7 +33,7 @@
             $content = $_POST['content'];
         }
         if (count($errors) == 0) {
-            $sql = "UPDATE note SET title='$title', content='$content' WHERE noteID=$noteID";
+            $sql = "UPDATE note SET title='$title', content='$content' WHERE noteID='$noteID'";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {

@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Login</h3>
-            <p>Silakan isi pada kolom dibawah ini!</p>
+            <p>Please fill the form below</p>
         </div>
 
         <!-- Main container for all inputs -->
@@ -62,7 +62,7 @@ if (isset($_POST['submit'])) {
             <!-- checklist -->
             <div class="subcontainer">
                 <label>
-                  <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Tetap online selama 4 jam </p>
+                  <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Stay online for 4 hours </p>
                 </label>
                   <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Anonymous mode </p>
             </div>
@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
             </div>
             <!-- Sign up link -->
             <p class="lupapass"><a href="#"><p align="center">Forgot password?</p></a></p>
-            <p class="keregister"><a href="registerCode.php"><p align="center">Belum punya akun?</p></a></p>
+            <p class="keregister"><a href="registerCode.php"><p align="center">Don't have an account? Signup!</p></a></p>
         </div>
 
     </form>
