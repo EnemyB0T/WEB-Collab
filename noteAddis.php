@@ -40,15 +40,18 @@ if(isset($_SESSION['userID'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Notes</title>
+        <title>Notes</title>
+    <link rel="stylesheet" href="noteAddis.css">
     <link rel="stylesheet" href="index.css">
-    <!-- <link rel="stylesheet" href="homepageLogged.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
-<!-- <header>
-        <h2 class="logo"><a href="homepage.html">Quill</a></h2>
+<header>
+        <h2 class="logo"><a href="homepageLogged.php">Quill</a></h2>
         <nav class="navbar">
             <button class="btnNotes"><a href="noteAddis.php">Notes</a></button>
         </nav>
@@ -84,31 +87,7 @@ if(isset($_SESSION['userID'])) {
                 </a>
             </div>
         </div>
-    </header> -->
-
-    <!-- navbar -->
-    <div id="navbar">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand">Quill /div></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" id="searchTxt" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-
-    </div>
+    </header>
 
     <!-- This is a comment by Jesus -->
 
@@ -187,11 +166,10 @@ if(isset($_SESSION['userID'])) {
 	<!-- A script that redirects the user to the logout page when the button is clicked -->
 	<script>
 		function logout() {
-			window.location.href = "logout.php";
+			window.location.href = "telahLogout.php";
 		}
 	</script>
     <!-- <a href="draw_page/index-2.php" class="btn btn-primary">Drawing</a> -->
-    <button onclick="location.href='homepageLogged.php'">Go to Homepage</button>
 
 </body>
 
