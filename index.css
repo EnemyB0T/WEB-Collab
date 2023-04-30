@@ -4,3 +4,41 @@
     box-sizing: border-box;
    
 }
+
+.note-card {
+    background-color: #fde8cd;
+    border: 1px solid #af926c;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 500px;
+}
+
+.card-container {
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #fde8cd;
+    border: 1px solid #af926c;
+  }
+  
+  .card {
+    border: 3px solid #fed19d;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+  }
+  
+  .card-text {
+    font-size: 18px;
+  }
+  
+  .text-muted {
+    color: #aaa;
+    font-size: 14px;
+  }

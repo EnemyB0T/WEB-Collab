@@ -13,7 +13,7 @@ if (!isset($_SESSION['userID'])) {
 	// requires php5
 	define('UPLOAD_DIR', 'images/');
   var_dump($_POST);
-  $img = $_POST['imgBase64'];
+  $img = $_POST['dataURL'];
   var_dump($img);
   $img = str_replace('data:image/png;base64,', '', $img);
   $img = str_replace(' ', '+', $img);

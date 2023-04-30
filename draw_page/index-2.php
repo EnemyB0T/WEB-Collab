@@ -8,7 +8,6 @@
         header("Location: ../loginCode.php");
     }
 
-    
 ?>
 
 <html lang="en">
@@ -117,7 +116,6 @@
     <a href="../noteAddis.php" class="btn btn-primary">Back</a>
     <form action="save_drawing.php">
       <input type="submit" value="save" id="saveBtn" onclick="saveDrawing()">
-    </form>
-    
+  </form>
   </body>
 </html>

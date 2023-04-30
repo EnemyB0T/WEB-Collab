@@ -111,22 +111,27 @@ if (mysqli_num_rows($result) > 0) {
     </div>
 
     <!-- Display notes -->
-<?php
-    // display the notes
-    if ($notes) {
-        foreach ($notes as $note) {
-            echo '<div class="card">';
-            echo '<div class="card-body">';
-            echo '<h5 class="card-title">' . $note['title'] . '</h5>';
-            echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
-            echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
-            echo '</div>';
-            echo '</div>';
+    <div class="card-container">
+    <?php
+        if ($notes) {
+            foreach ($notes as $note) {
+                echo '<div class="card">';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $note['title'] . '</h5>';
+                echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
+                echo '<p class="card-text"><small class="text-muted">Created On ' . date('M j, Y', strtotime($note['createdAt'])) . '</small></p>';
+                echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
+                echo '<a href="edit_note.php?noteID=' . $note['noteID'] . '"class="btn btn-primary">Edit</a>';
+                echo '</div>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>You have no notes yet.</p>';
         }
-    } else {
-        echo '<p>You have no notes yet.</p>';
-    }
-?>
+    ?>
+</div>
+
+
 
     <?php
     $sql = "SELECT * FROM drawings WHERE userID = $userID";
