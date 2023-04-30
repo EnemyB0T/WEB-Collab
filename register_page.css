@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+
 body 
 {
   font-family:sans-serif; 
@@ -6,18 +11,28 @@ body
   color:rgb(0, 0, 0);
 
 }
-
 .form-header{
   font-size: 3rem;
 }
 
 h1{
-    text-align: center;
+  font-family: 'Lobster';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2.5vw;
+  line-height: 62px;
+  color: #504C44;
+  -webkit-text-stroke: 0.5px white;
+  text-decoration: none;
+  text-align: center;
+
 }
+
 
 h3{
   font-size: 1.5rem;
 }
+
 
 form{
     width:35rem;
