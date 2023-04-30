@@ -1,0 +1,119 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Notes</title>
+    <link rel="stylesheet" href="noteAddis.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <header>
+        <h2 class="logo"><a href="homepage.html">Quill</a></h2>
+        <nav class="navbar">
+            <button class="btnNotes"><a href="noteAddis.php">Notes</a></button>
+        </nav>
+        <img class="userpic" src="profile-images/userpic.png" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img src="profile-images/userpic.png">
+                    <h2>Username</h2>
+                </div>
+                <hr>
+
+                <a href="editprofile.html" class="sub-menu-link">
+                    <img src="profile-images/profile.png">
+                    <h3>Edit Profile</h3>
+                    <span>></span>
+                </a>
+                <a href="#" class="sub-menu-link">
+                    <img src="profile-images/setting.png">
+                    <h3>Settings & Privacy</h3>
+                    <span>></span>
+                </a>
+                <a href="#" class="sub-menu-link">
+                    <img src="profile-images/help.png">
+                    <h3>Help & Support</h3>
+                    <span>></span>
+                </a>
+                <a href="#" class="sub-menu-link">
+                    <img src="profile-images/logout.png">
+                    <h3>Logout</h3>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+    </header>
+    <!-- This is a comment by Jesus -->
+
+
+    <div class="container">
+        <!-- main-container -->
+        <div class="container my-3">
+            <h1>
+                
+            </h1>
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="addnote.php">
+                        <h5 class="card-title">Add title</h5>
+
+                        <div class="form-group my-3">
+                            <input type="text" class="form-control" id="addTitle" placeholder="Enter your title" name="title">
+                        </div>
+
+                        <h5 class="card-title">Add a note</h5>
+                        <div class="form-group">
+                            <textarea class="form-control" id="addTxt" rows="3" placeholder="Enter your Note" name="content"></textarea>
+                        </div>
+                        <button class="btn btn-success my-3" id="addBtn" name="submit">Add Note</button>
+                    </form> 
+                </div>
+            </div>
+            <hr>
+            <h1>Your Notes</h1>
+            <hr>
+            <div id="notes" class="row container-fluid"> </div>
+        </div>
+
+    </div>
+
+    <!-- Display notes -->
+
+    
+
+    <button onclick="logout()">Logout</button>
+
+	<!-- A script that redirects the user to the logout page when the button is clicked -->
+	<script>
+		function logout() {
+			window.location.href = "logout.php";
+		}
+	</script>
+    <a href="draw_page/index-2.php" class="btn btn-primary">Drawing</a>
+
+    <script>
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
+    </script>
+</body>
+</body>
+
+</html>
