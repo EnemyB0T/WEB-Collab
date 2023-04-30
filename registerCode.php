@@ -7,13 +7,14 @@ error_reporting(0);
 session_start();
  
 if (isset($_SESSION['userID'])) {
-    header("Location: loginCode.php");
+    header("Location: berhasil_login.php");
 }
  
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = md5($_POST['password']);
+    
  
     if ($password) {
         $sql = "SELECT * FROM useraccount WHERE emailAddress='$email'";
@@ -27,7 +28,6 @@ if (isset($_POST['submit'])) {
                 $username = "";
                 $email = "";
                 $_POST['password'] = "";
-                $_POST['cpassword'] = "";
             } else {
                 echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
             }
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
         }
          
     } else {
-        echo "<script>alert('Password Tidak Sesuai')</script>";
+        echo "<script>alert('Masukkan Password')</script>";
     }
 }
  
