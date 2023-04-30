@@ -4,25 +4,19 @@ include('config.php');
 
 if(isset($_SESSION['userID'])) {
   // If the user is logged in, show the note form
-  //echo '<h1>Add Note</h1>';
-
-  
   // retrieve the note from the database
-$userID = $_SESSION['userID'];
-$sql = "SELECT * FROM note WHERE userID=$userID";
-$result = mysqli_query($conn, $sql);
-$notes = array();
+    $userID = $_SESSION['userID'];
+    $sql = "SELECT * FROM note WHERE userID=$userID";
+    $result = mysqli_query($conn, $sql);
+    $notes = array();
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $notes[] = $row;
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $notes[] = $row;
+        }
+    } else { 
+        $notes = null;
     }
-} else { 
-    $notes = null;
-}
-
-
-
 } else {
   // If the user is not logged in, redirect them to the login page
   echo 'User is not logged in';
@@ -48,9 +42,49 @@ if (mysqli_num_rows($result) > 0) {
 
     <title>Notes</title>
     <link rel="stylesheet" href="index.css">
+    <!-- <link rel="stylesheet" href="homepageLogged.css"> -->
 </head>
 
 <body>
+
+<!-- <header>
+        <h2 class="logo"><a href="homepage.html">Quill</a></h2>
+        <nav class="navbar">
+            <button class="btnNotes"><a href="noteAddis.php">Notes</a></button>
+        </nav>
+        <img class="userpic" src="profile-images/userpic.png" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img src="profile-images/userpic.png">
+                    <h2>Username</h2>
+                </div>
+                <hr>
+
+                <a href="editprofile.html" class="sub-menu-link">
+                    <img src="profile-images/profile.png">
+                    <h3>Edit Profile</h3>
+                    <span>></span>
+                </a>
+                <a href="#" class="sub-menu-link">
+                    <img src="profile-images/setting.png">
+                    <h3>Settings & Privacy</h3>
+                    <span>></span>
+                </a>
+                <a href="#" class="sub-menu-link">
+                    <img src="profile-images/help.png">
+                    <h3>Help & Support</h3>
+                    <span>></span>
+                </a>
+                <a href="#" class="sub-menu-link">
+                    <img src="profile-images/logout.png">
+                    <h3>Logout</h3>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+    </header> -->
 
     <!-- navbar -->
     <div id="navbar">
@@ -111,7 +145,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>
 
     <!-- Display notes -->
-    <div class="card-container">
+<div class="card-container">
     <?php
         if ($notes) {
             foreach ($notes as $note) {
@@ -119,7 +153,8 @@ if (mysqli_num_rows($result) > 0) {
                 echo '<div class="card-body">';
                 echo '<h5 class="card-title">' . $note['title'] . '</h5>';
                 echo '<p class="card-text">' . nl2br($note['content']) . '</p>';
-                echo '<p class="card-text"><small class="text-muted">Created On ' . date('M j, Y', strtotime($note['createdAt'])) . '</small></p>';
+                echo '<p class="card-text"><small class="text-muted">Created On ' .
+                 date('M j, Y', strtotime($note['createdAt'])) . '</small></p>';
                 echo '<a href="delete_note.php?noteID=' . $note['noteID'] . '" class="btn btn-danger">Delete</a>';
                 echo '<a href="edit_note.php?noteID=' . $note['noteID'] . '"class="btn btn-primary">Edit</a>';
                 echo '</div>';
@@ -155,7 +190,9 @@ if (mysqli_num_rows($result) > 0) {
 			window.location.href = "logout.php";
 		}
 	</script>
-    <a href="draw_page/index-2.php" class="btn btn-primary">Drawing</a>
+    <!-- <a href="draw_page/index-2.php" class="btn btn-primary">Drawing</a> -->
+    <button onclick="location.href='homepageLogged.php'">Go to Homepage</button>
+
 </body>
 
 </html>

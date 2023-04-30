@@ -15,7 +15,7 @@ $row = mysqli_fetch_assoc($result);
 $username = $row['username'];
 
 // Redirect to note.php after 1 seconds
-header("Refresh: 1; url=noteAddis.php");
+header("Refresh: 1; url=homepageLogged.php");
 ?>
 
 <!DOCTYPE html>

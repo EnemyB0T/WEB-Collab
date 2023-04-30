@@ -35,10 +35,11 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login_page.css">
+    <!-- <link rel="stylesheet" href="homepage.css"> -->
     <title>Login page in HTML</title>
 </head>
 <body>
-    <h1 class="form-header">Quill</h1>
+    <h1 class="form-header"><a href="homepage.html">Quill</a></h1>
     <form action="" method="POST" class="login-email">
         <!-- Headings for the form -->
         <div class="headingsContainer">

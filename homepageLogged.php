@@ -6,9 +6,11 @@ error_reporting(0);
  
 session_start();
  
-if (isset($_SESSION['userID'])) {
-    header("Location: berhasil_login.php");
+if (!isset($_SESSION['userID'])) {
+    header("Location: loginCode.php");
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@ if (isset($_SESSION['userID'])) {
 <body>
     
     <header>
-        <h2 class="logo"><a href="homepage.html">Quill</a></h2>
+        <h2 class="logo"><a href="homepageLogged.php">Quill</a></h2>
         <nav class="navbar">
             <button class="btnNotes"><a href="noteAddis.php">Notes</a></button>
         </nav>
