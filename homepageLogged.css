@@ -9,10 +9,7 @@
 }
 
 body{
-    position: relative;
-    width: 1519px;
-    height: 1200px;
-    
+    position: relative;   
     background: linear-gradient(116.82deg, #F4E4B7 -50%, #F2EAD3 104.42%);
     mix-blend-mode: normal;
     }
