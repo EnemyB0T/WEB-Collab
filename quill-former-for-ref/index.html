@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Quill Folder Organization</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="sidebar">
+			<h2>Folders</h2>
+			<ul id="folder-list">
+				<!-- Folder list will be populated by JavaScript -->
+			</ul>
+			<button id="new-folder-btn">New Folder</button>
+		</div>
+		<div class="main-content">
+			<div id="folder-name"></div>
+			<div id="note-list">
+				<!-- Note list will be populated by JavaScript -->
+			</div>
+		</div>
+	</div>
+
+	<div id="new-folder-modal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<h3>New Folder</h3>
+			<form id="new-folder-form">
+				<label for="folder-name-input">Folder Name:</label>
+				<input type="text" id="folder-name-input" name="folder-name">
+				<button type="submit">Create</button>
+			</form>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
