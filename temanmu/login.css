@@ -89,8 +89,7 @@ nav a .userIcon {
 }
 
 a:hover{
-    text-decoration: underline;
-    transition: .5s;* {
+    font-weight: bold;* {
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -305,9 +304,8 @@ div .extra p{
     text-align: center;
 }
 
-div .extra .btn{
-    background-color: black;
-    justify-self: center;
+div .btn{
+    align-items: center;
 }
 
 
