@@ -236,7 +236,7 @@ a:hover{
     align-items: center;
     justify-content: space-evenly;
     scroll-snap-align: start;
-    background-position: left 0% top 100px;
+    background-position: left 35px top 120px;
     background-image: url(images/Login.png);
     background-repeat: no-repeat;
     gap: 50px;
@@ -281,16 +281,13 @@ a:hover{
     font-weight: 600;
 }
 .section2 {
-    text-align: left;
     margin-top: 50px;
     background-color: aqua;
 }
 
 .section2 p{
     font-size: 16px;
-    font-weight: 600;
-    text-align: left;
-    
+    font-weight: 600; 
 }
 .section2 a{
     color: #0047FF;
@@ -303,13 +300,12 @@ input[type=text], input[type=password]{
     padding: 15px 8px;
     box-sizing: border-box;
     font-size: 18px;
-    justify-self: center;
 }
 
 .submit{
     background-color: aquamarine;
     display: flex;
-    justify-items: center;
+    place-self: center;
 }
 
 
