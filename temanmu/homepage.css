@@ -4,7 +4,9 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
+
 body{
     display: flex;
     font-family: 'Poppins', sans-serif;
@@ -53,6 +55,7 @@ nav{
     z-index: 1;
     box-shadow: 0 8px 30px 0 rgba(0,0,0,0.1);
 }
+
 nav .logo a{
     color: black;
     font-size: 32px;
