@@ -282,7 +282,6 @@ a:hover{
 }
 .section2 {
     margin-top: 50px;
-    background-color: aqua;
 }
 
 .section2 p{
@@ -302,10 +301,13 @@ input[type=text], input[type=password]{
     font-size: 18px;
 }
 
-.submit{
-    background-color: aquamarine;
-    display: flex;
-    place-self: center;
+div .extra p{
+    text-align: center;
+}
+
+div .extra .btn{
+    background-color: black;
+    justify-self: center;
 }
 
 
