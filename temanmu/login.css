@@ -300,12 +300,17 @@ input[type=text], input[type=password]{
     font-size: 18px;
 }
 
-div .extra p{
-    text-align: center;
+div .extra {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
 }
 
-div .btn{
-    align-items: center;
+div .submit{
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 
