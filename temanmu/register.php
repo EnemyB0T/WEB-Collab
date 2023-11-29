@@ -1,4 +1,6 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include 'config.php';
  
@@ -7,16 +9,20 @@ error_reporting(0);
 session_start();
  
 if (isset($_SESSION['userID'])) {
+    echo $_SESSION['userID'];
     header("Location: berhasil_login.php");
 }
  
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = md5($_POST['password']);
+    $rawPassword = $_POST['password']; // Don't hash it yet
     $date = date("Y-m-d");
 
-    if ($password) {
+    // Use password_hash() to securely hash the password
+    $hashedPassword = password_hash($rawPassword, PASSWORD_DEFAULT);
+
+    if ($hashedPassword) {
         $checkEmailQuery = "SELECT * FROM user WHERE userEmail=?";
         $checkEmailStmt = mysqli_prepare($conn, $checkEmailQuery);
         mysqli_stmt_bind_param($checkEmailStmt, "s", $email);
@@ -26,33 +32,37 @@ if (isset($_POST['submit'])) {
         if (!$result) {
             die("Error checking email: " . mysqli_error($conn));
         }
-        
+
         if ($result->num_rows > 0) {
             echo "<script>alert('Woops! Email Sudah Terdaftar.')</script>";
         } else {
+            $insertQuery = "INSERT INTO user (userName, userEmail, userPassword, dateCreated)
+                            VALUES (?, ?, ?, ?)";
+
             $insertStmt = mysqli_prepare($conn, $insertQuery);
-        
+
             if (!$insertStmt) {
                 die("Error preparing insert statement: " . mysqli_error($conn));
             }
-        
-            mysqli_stmt_bind_param($insertStmt, "ssss", $username, $email, $password, $date);
+
+            mysqli_stmt_bind_param($insertStmt, "ssss", $username, $email, $hashedPassword, $date);
             mysqli_stmt_execute($insertStmt);
-        
+
             if (!$insertStmt) {
                 die("Error inserting user: " . mysqli_error($conn));
             }
-        
+
             echo "<script>alert('Selamat, registrasi berhasil!')</script>";
             $username = "";
             $email = "";
-            $password = "";
+            $rawPassword = ""; // Clear the raw password
             header("Location: login.php");
         }
     } else {
         echo "<script>alert('Masukkan Password')</script>";
     }
 }
+
 
  
 ?>
@@ -68,16 +78,14 @@ if (isset($_POST['submit'])) {
     <title>Register page in HTML</title>
 </head>
 <body>
-<h1 class="form-header">Quill</h1>
+<h1 class="form-header">Temanmu</h1>
     <form action="" method="POST" class="login-email">
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Register</h3>
             <p>Please fill the form to register</p>
         </div>
-        <?php
-        echo date("Y-m-d");
-        ?>
+    
 
         <!-- Main container for all inputs -->
         <div class="mainContainer">
@@ -119,7 +127,7 @@ if (isset($_POST['submit'])) {
 
             </div>
             <!-- Sign up link -->
-            <p class="lupapass"><p align="center"> Already got a member?</p>  <a href="loginCode.php"><p align="center">Log in here!</p></a></p>
+            <p class="lupapass"><p align="center"> Already got a member?</p>  <a href="login.php"><p align="center">Log in here!</p></a></p>
 
         </div>
 

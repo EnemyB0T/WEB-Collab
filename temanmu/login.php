@@ -7,21 +7,44 @@ error_reporting(0);
 session_start();
  
 if (isset($_SESSION['userID'])) {
+    echo $_SESSION['userID'];
     header("Location: berhasil_login.php");
 }
  
 if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $password = md5($_POST['password']);
- 
-    $sql = "SELECT * FROM useraccount WHERE emailAddress='$email' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
+    $enteredEmail = $_POST['email'];
+    $enteredPassword = $_POST['password'];
+
+    $checkEmailQuery = "SELECT * FROM user WHERE userEmail=?";
+    $checkEmailStmt = mysqli_prepare($conn, $checkEmailQuery);
+    mysqli_stmt_bind_param($checkEmailStmt, "s", $enteredEmail);
+    mysqli_stmt_execute($checkEmailStmt);
+    $result = mysqli_stmt_get_result($checkEmailStmt);
+
+    if (!$result) {
+        die("Error checking email: " . mysqli_error($conn));
+    }
+
     if ($result->num_rows > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['userID'] = $row['userID'];
-        header("Location: berhasil_login.php");
+        $userData = $result->fetch_assoc();
+        $hashedPasswordFromDatabase = $userData['userPassword'];
+
+        // Use password_verify to check if entered password matches hashed password
+        if (password_verify($enteredPassword, $hashedPasswordFromDatabase)) {
+            // Store user data in session
+            $_SESSION['userID'] = $userData['user_id'];
+            $_SESSION['userEmail'] = $userData['userEmail'];
+            
+            // echo "<script>alert('reached session point')</script>";
+            // Redirect to the home page
+            header("Location: berhasil_login.php");
+            exit;2
+            
+        } else {
+            echo "<script>alert('Incorrect password.')</script>";
+        }
     } else {
-        echo "<script>alert('Email atau password Anda salah. Silahkan coba lagi!')</script>";
+        echo "<script>alert('User not found.')</script>";
     }
 }
  
@@ -39,13 +62,14 @@ if (isset($_POST['submit'])) {
     <title>Login page in HTML</title>
 </head>
 <body>
-    <h1 class="form-header"><a href="homepage.html">Quill</a></h1>
-    <form action="" method="POST" class="login-email">
+    <h1 class="form-header"><a href="homepage.html">Temanmu</a></h1>
+    <form action="login.php" method="POST" class="login-email">
         <!-- Headings for the form -->
         <div class="headingsContainer">
             <h3>Login</h3>
             <p>Please fill the form below</p>
         </div>
+        <?php echo $_SESSION['userID']; ?>
 
         <!-- Main container for all inputs -->
         <div class="mainContainer">
