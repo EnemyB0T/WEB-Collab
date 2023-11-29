@@ -26,7 +26,24 @@
           <li><a href="chat.html">Curhatanmu</a></li>
           <li><a href="faq.html">Tentang</a></li>
           <li><a href="testimoni.html">Testimoni</a></li>
-          <li><a href="profile.html"><img class="userIcon" src="images/Group.png" alt="User"></a></li>
+          <li><img class="userIcon" src="images/Group.png" alt="User" onclick="toggleMenu()">
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <h2>Guest</h2>
+                    </div>
+                    <hr>
+                    <a href="login.html" class="sub-menu-link">
+                        <h3>Login</h3>
+                        <span>></span>
+                    </a>
+                    <a href="register.html" class="sub-menu-link">
+                        <h3>Register</h3>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+            </li>
         </ul>
     </nav>
 
@@ -86,7 +103,13 @@
             </div>
         </footer>
     </div>
-
+    <script>
+      let subMenu = document.getElementById("subMenu");
+  
+      function toggleMenu(){
+          subMenu.classList.toggle("open-menu");
+      }
+    </script>
 </body>
 
 </html>
