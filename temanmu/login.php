@@ -32,13 +32,14 @@ if (isset($_POST['submit'])) {
         // Use password_verify to check if entered password matches hashed password
         if (password_verify($enteredPassword, $hashedPasswordFromDatabase)) {
             // Store user data in session
-            $_SESSION['userID'] = $userData['user_id'];
+            $_SESSION['userID'] = $userData['userID'];
             $_SESSION['userEmail'] = $userData['userEmail'];
+            echo "<script>alert('" . $_SESSION[userID] . "</script>";
             
             // echo "<script>alert('reached session point')</script>";
             // Redirect to the home page
             header("Location: berhasil_login.php");
-            exit;2
+            
             
         } else {
             echo "<script>alert('Incorrect password.')</script>";
@@ -47,7 +48,6 @@ if (isset($_POST['submit'])) {
         echo "<script>alert('User not found.')</script>";
     }
 }
- 
 ?>
 
 
