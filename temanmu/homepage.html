@@ -46,12 +46,12 @@
                     </a>
                 </div>
             </div>
-            </a></li>
+            </li>
         </ul>
     </nav>
 
     <div class="container">
-        <div class="slides slide1">
+        <div id = "slide1" class="slides slide1" >
             <section class="section1">
                 <h1>Temanmu, pendengarmu</h1>
                 <p>&nbsp;</p>
@@ -64,7 +64,7 @@
             <section class="section2">
                 <h2>Sistem Poinmu!</h2>
                 <p>&nbsp;</p>
-                    <div class="carousel" data-flickity='{ "draggable": true, "pageDots": false }'>    
+                    <div class="carousel" data-flickity='{ "draggable": true, "pageDots": false}'>    
                         <div class="card"><img src="images/Heart Card 1.png" alt="card1"></div>
                         <div class="card"><img src="images/Heart Card 2.png" alt="card2"></div>
                         <div class="card"><img src="images/Heart Card 3.png" alt="card3"></div>
@@ -118,11 +118,28 @@
     </div>
 
     <script>
+        
+        function changeBg(){
+
+            const images = [
+                'url("images/Homepage1.png")',
+                'url("images/Homepage2.png")',
+                'url("images/Homepage3.png")',
+            ]
+
+            const section = document.querySelector('slide1')
+            const bg = images[Math.floor(Math.random()*images.length)];
+            section.style.backgroundImage = bg;
+        }
+
+        setInterval(changeBg, 2000)
+
         let subMenu = document.getElementById("subMenu");
 
         function toggleMenu(){
             subMenu.classList.toggle("open-menu");
         }
+
     </script>
 </body>
 
