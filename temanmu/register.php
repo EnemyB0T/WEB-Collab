@@ -15,32 +15,45 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = md5($_POST['password']);
     $date = date("Y-m-d");
- 
+
     if ($password) {
-        $sql = "SELECT * FROM user WHERE userEmail='$email'";
-        $result = mysqli_query($conn, $sql);
-        if (!$result->num_rows > 0) {
-            $sql = "INSERT INTO user (userName, userEmail, userPassword, dateCreated)
-                    VALUES ('$username', '$email', '$password', $date)";
-            $result = mysqli_query($conn, $sql);
-            echo $result;
-            if ($result) {
-                echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-                $username = "";
-                $email = "";
-                $password = "";
-                header("Location: login.php");
-            } else {
-                echo "<script>alert('Woops! Terjadi kesalahan.')</script>";
-            }
-        } else {
-            echo "<script>alert('Woops! Email Sudah Terdaftar.')</script>";
+        $checkEmailQuery = "SELECT * FROM user WHERE userEmail=?";
+        $checkEmailStmt = mysqli_prepare($conn, $checkEmailQuery);
+        mysqli_stmt_bind_param($checkEmailStmt, "s", $email);
+        mysqli_stmt_execute($checkEmailStmt);
+        $result = mysqli_stmt_get_result($checkEmailStmt);
+
+        if (!$result) {
+            die("Error checking email: " . mysqli_error($conn));
         }
-         
+        
+        if ($result->num_rows > 0) {
+            echo "<script>alert('Woops! Email Sudah Terdaftar.')</script>";
+        } else {
+            $insertStmt = mysqli_prepare($conn, $insertQuery);
+        
+            if (!$insertStmt) {
+                die("Error preparing insert statement: " . mysqli_error($conn));
+            }
+        
+            mysqli_stmt_bind_param($insertStmt, "ssss", $username, $email, $password, $date);
+            mysqli_stmt_execute($insertStmt);
+        
+            if (!$insertStmt) {
+                die("Error inserting user: " . mysqli_error($conn));
+            }
+        
+            echo "<script>alert('Selamat, registrasi berhasil!')</script>";
+            $username = "";
+            $email = "";
+            $password = "";
+            header("Location: login.php");
+        }
     } else {
         echo "<script>alert('Masukkan Password')</script>";
     }
 }
+
  
 ?>
 
@@ -62,6 +75,9 @@ if (isset($_POST['submit'])) {
             <h3>Register</h3>
             <p>Please fill the form to register</p>
         </div>
+        <?php
+        echo date("Y-m-d");
+        ?>
 
         <!-- Main container for all inputs -->
         <div class="mainContainer">

@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
             </div>
             <!-- Sign up link -->
             <p class="lupapass"><a href="#"><p align="center">Forgot password?</p></a></p>
-            <p class="keregister"><a href="registerCode.php"><p align="center">Don't have an account? Signup!</p></a></p>
+            <p class="keregister"><a href="register.php"><p align="center">Don't have an account? Signup!</p></a></p>
         </div>
 
     </form>
