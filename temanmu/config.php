@@ -8,11 +8,9 @@ $database = "temanmu";
 $conn = mysqli_connect($server, $user, $pass, $database);
  
 if (!$conn) {
-    die("<script>alert('Gagal tersambung dengan database.')</script>");
+    throw new Exception("Failed to connect to database: " . mysqli_connect_error());
 }
-else
-{
-    echo "successfully connected to $database database";
-}
- 
+
+// The echo statement is removed to prevent output before session_start() in the main script
+
 ?>

@@ -1,52 +1,59 @@
-<?php 
- 
+<?php
 include 'config.php';
- 
-error_reporting(0);
- 
-session_start();
- 
-if (isset($_SESSION['userID'])) {
-    echo $_SESSION['userID'];
-    header("Location: berhasil_login.php");
-}
- 
-if (isset($_POST['submit'])) {
-    $enteredEmail = $_POST['email'];
-    $enteredPassword = $_POST['password'];
+try{
+    ob_start();
+    session_start();
 
-    $checkEmailQuery = "SELECT * FROM user WHERE userEmail=?";
-    $checkEmailStmt = mysqli_prepare($conn, $checkEmailQuery);
-    mysqli_stmt_bind_param($checkEmailStmt, "s", $enteredEmail);
-    mysqli_stmt_execute($checkEmailStmt);
-    $result = mysqli_stmt_get_result($checkEmailStmt);
-
-    if (!$result) {
-        die("Error checking email: " . mysqli_error($conn));
+    error_reporting(E_ALL);
+    
+    if (isset($_SESSION['userID'])) {
+        // echo "<script>alert('test')</script>";
+        header("Location: test_page_for_topics.php");
     }
+    
+    if (isset($_POST['submit'])) {
+        $enteredEmail = $_POST['email'];
+        $enteredPassword = $_POST['password'];
 
-    if ($result->num_rows > 0) {
-        $userData = $result->fetch_assoc();
-        $hashedPasswordFromDatabase = $userData['userPassword'];
+        $checkEmailQuery = "SELECT * FROM user WHERE userEmail=?";
+        $checkEmailStmt = mysqli_prepare($conn, $checkEmailQuery);
+        mysqli_stmt_bind_param($checkEmailStmt, "s", $enteredEmail);
+        mysqli_stmt_execute($checkEmailStmt);
+        $result = mysqli_stmt_get_result($checkEmailStmt);
 
-        // Use password_verify to check if entered password matches hashed password
-        if (password_verify($enteredPassword, $hashedPasswordFromDatabase)) {
-            // Store user data in session
-            $_SESSION['userID'] = $userData['userID'];
-            $_SESSION['userEmail'] = $userData['userEmail'];
-            echo "<script>alert('" . $_SESSION[userID] . "</script>";
-            
-            // echo "<script>alert('reached session point')</script>";
-            // Redirect to the home page
-            header("Location: berhasil_login.php");
-            
-            
-        } else {
-            echo "<script>alert('Incorrect password.')</script>";
+        if (!$result) {
+            die("Error checking email: " . mysqli_error($conn));
         }
-    } else {
-        echo "<script>alert('User not found.')</script>";
+
+        if ($result->num_rows > 0) {
+            $userData = $result->fetch_assoc();
+            $hashedPasswordFromDatabase = $userData['userPassword'];
+
+            // Use password_verify to check if entered password matches hashed password
+            if (password_verify($enteredPassword, $hashedPasswordFromDatabase)) {
+                // Store user data in session
+                $_SESSION['userID'] = $userData['userID'];
+                $_SESSION['userEmail'] = $userData['userEmail'];
+                // echo "<script>alert('" . $_SESSION['userID'] . "');</script>";
+
+                
+                // echo "<script>alert('reached session point')</script>";
+                // Redirect to the home page
+                header("Location: test_page_for_topics.php");
+                
+                
+            } else {
+                echo "<script>alert('Incorrect password.')</script>";
+            }
+        } else {
+            echo "<script>alert('User not found.')</script>";
+        }
     }
+    ob_flush();
+}catch (Exception $e) {
+    // Handle the exception, for example:
+    echo "<script>alert('" . $e->getMessage() . "')</script>";
+    // Optionally, exit the script or redirect to an error page
 }
 ?>
 
@@ -69,13 +76,13 @@ if (isset($_POST['submit'])) {
             <h3>Login</h3>
             <p>Please fill the form below</p>
         </div>
-        <?php echo $_SESSION['userID']; ?>
 
         <!-- Main container for all inputs -->
         <div class="mainContainer">
             <!-- Email -->
             <label for="email">Your email:</label>
-            <input type="text" placeholder="Enter email" name="email" value="<?php echo $email; ?>" required>
+            <input type="text" placeholder="Enter email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+
 
             <br><br>
 

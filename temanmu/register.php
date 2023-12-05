@@ -52,6 +52,18 @@ if (isset($_POST['submit'])) {
                 die("Error inserting user: " . mysqli_error($conn));
             }
 
+            //nilai database
+            $newUserID = $conn->insert_id; // Get the last inserted ID
+
+            $insertPointsQuery = "INSERT INTO nilai (userID, nilaiUser, nilaiKonten, nilaiReply, nilaiLike, totalNilai) VALUES (?, 5, 0, 0, 0, 5)";
+
+            $stmt = $conn->prepare($insertPointsQuery);
+            $stmt->bind_param("i", $newUserID);
+            $stmt->execute();
+
+            if ($stmt->error) {
+                echo "Error creating life points record: " . $stmt->error;
+            }
             echo "<script>alert('Selamat, registrasi berhasil!')</script>";
             $username = "";
             $email = "";

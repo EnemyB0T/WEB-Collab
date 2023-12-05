@@ -10,6 +10,10 @@ if (isset($_SESSION['userID'])) {
     $loggedIn = false;
 }
 
+if(!isset($_SESSION['userID'])) {
+    header("Location: login.php");
+}
+
 // Logout logic
 if (isset($_POST['logout'])) {
     // Destroy the session and redirect to the login page
