@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temanmu</title>
-    <link rel="stylesheet" href="homepageLogged.css">
+    <link rel="stylesheet" href="homepage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,21 +27,21 @@
           <li><a href="homepage.html">Beranda</a></li>
           <li><a href="topik.html">Topik</a></li>
           <li><a href="chat.html">Curhatanmu</a></li>
-          <li><a href="faq.html">Tentang</a></li>
+          <li><a href="faq.html">Tentang kami</a></li>
           <li><a href="testimoni.html">Testimoni</a></li>
           <li><img class="userIcon" src="images/Group.png" alt="User" onclick="toggleMenu()">
             <div class="sub-menu-wrap" id="subMenu">
                 <div class="sub-menu">
                     <div class="user-info">
-                        <h2>Guest</h2>
+                        <h2>User</h2>
                     </div>
                     <hr>
-                    <a href="login.html" class="sub-menu-link">
-                        <h3>Login</h3>
+                    <a href="profile.html" class="sub-menu-link">
+                        <h3>Edit Profile</h3>
                         <span>></span>
                     </a>
-                    <a href="register.html" class="sub-menu-link">
-                        <h3>Register</h3>
+                    <a href="#" class="sub-menu-link">
+                        <h3>Logout</h3>
                         <span>></span>
                     </a>
                 </div>
@@ -60,8 +60,24 @@
             </section>
         </div>
 
-        <div class="slides slide2">
+        <div class="slides slide2" id="section2">
             <section class="section2">
+                <div class="homeAbout">
+                    <h2>Tentang Kami</h2>
+                    <p>Temanmu adalah sebuah website yang dirancang untuk pengguna dapat bercerita, 
+                        curhat, menyuarakan pendapat dan juga merespon cerita dari pengguna lain. 
+                        Temanmu hadir karena kebanyakan orang enggan atau sulit untuk menyampaikan hal 
+                        mengenai perasaannya. Kami ingin pengguna merasa didengar dan leluasa saat 
+                        bercerita,  sehingga kami menciptakan Temanmu.</p>
+                </div>
+                <div class="homeAboutImage">
+                    <img class="homeAboutImg" src="images/Homepage3.png" alt="HomeAbout">
+                </div>
+            </section>
+        </div>
+
+        <div class="slides slide3">
+            <section class="section3">
                 <h2>Sistem Poinmu!</h2>
                 <p>&nbsp;</p>
                     <div class="carousel" data-flickity='{ "draggable": true, "pageDots": false}'>    
@@ -72,16 +88,16 @@
                     </div>
             </section>
         </div>
-
-        <div class="slides slide3" id="section3">
-            <section class="section3">
+        
+        <div class="slides slide4" id="section3">
+            <section class="section4">
                 <h4>Yuk Curhat!</h4>
                 <div><a href="login.html"><button class="btn">Mulai Curhat</button></a></div>
             </section>
         </div>
 
-        <div class="slides slide4">
-            <section class="section3">
+        <div class="slides slide5">
+            <section class="section5">
                 <h2>Hubungkan ke <img class="spotifyIcon" src="images/Spotify.png" alt="Spotify"></h2>
                 <p>&nbsp;</p>
                 <p>Dengan menghubungkan aplikasi spotify, kamu bisa membalas cerita</p>
@@ -119,21 +135,6 @@
 
     <script>
         
-        function changeBg(){
-
-            const images = [
-                'url("images/Homepage1.png")',
-                'url("images/Homepage2.png")',
-                'url("images/Homepage3.png")',
-            ]
-
-            const section = document.querySelector('slide1')
-            const bg = images[Math.floor(Math.random()*images.length)];
-            section.style.backgroundImage = bg;
-        }
-
-        setInterval(changeBg, 2000)
-
         let subMenu = document.getElementById("subMenu");
 
         function toggleMenu(){
