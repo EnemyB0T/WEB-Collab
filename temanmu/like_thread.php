@@ -12,6 +12,16 @@ if (isset($_SESSION['userID']) && isset($_POST['kontenID'])) {
     $username = getUsernameFromUserID($userID, $conn);
     echo $username;
 
+    // Debugging: Check if kontenID exists in the konten table
+$checkKontenIDStmt = $conn->prepare("SELECT kontenID FROM konten WHERE kontenID = ?");
+$checkKontenIDStmt->bind_param("i", $kontenID);
+$checkKontenIDStmt->execute();
+$checkKontenIDResult = $checkKontenIDStmt->get_result();
+
+if($checkKontenIDResult->num_rows == 0) {
+    exit('Error: kontenID does not exist in the konten table.');
+}
+
     
 
     // Check if the user has already liked this content or reply
@@ -48,15 +58,31 @@ if (isset($_SESSION['userID']) && isset($_POST['kontenID'])) {
 
     // echo '<script>alert("reached this point");</script>';
 
+    $topicIdOrName = $_POST['topicIdOrName'] ?? 'DefaultTopicName'; // Use a default value for debugging
+
+    // Debugging: Display the retrieved topic name
+    echo '<p>Topic Name: ' . htmlspecialchars($topicIdOrName) . '</p>';
+
     // Determine the redirection URL
     $redirectPage = $_POST['redirect'] ?? 'thread'; // Default to 'thread' if not provided
+
+    // Debugging: Display the retrieved redirecting page
+    echo '<p>Redirect Page: ' . htmlspecialchars($redirectPage) . '</p>';
+
     $redirectUrl = $redirectPage === 'thread_specific' ? 
         "thread_specific.php?id=" . urlencode($kontenID) :
-        "thread.php?id=" . urlencode($topicIdOrName); // Ensure $topicIdOrName is defined and holds the topic ID or name
+        "thread.php?topic=" . urlencode($topicIdOrName); // Ensure $topicIdOrName is defined and holds the topic ID or name
 
-    // Instead of redirecting immediately, present a button to the user
-    echo '<p>Click the button to go back.</p>';
-    echo '<button onclick="window.location.href=\'' . $redirectUrl . '\'">Go Back</button>';
+
+    // Debugging: Display redirect URL
+    echo '<p>Redirect Page: ' . htmlspecialchars($redirectUrl) . '</p>';
+
+    // Automatic redirect. Comment to debug
+    header("Location: " . $redirectUrl);
+
+    // Instead of redirecting immediately, present a button to the user. Comment if automatic redirect is activated
+    // echo '<p>Click the button to go back.</p>';
+    // echo '<button onclick="window.location.href=\'' . $redirectUrl . '\'">Go Back</button>';
 
     // Don't forget to call exit to prevent further code execution if necessary
     exit();

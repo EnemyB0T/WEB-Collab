@@ -26,12 +26,12 @@ try {
 }
 
 // Fetch the count of likes for the thread
-$likeCountStmt = $conn->prepare("SELECT COUNT(*) as likeCount FROM reply WHERE kontenID = ?");
-$likeCountStmt->bind_param("i", $threadID);
-$likeCountStmt->execute();
-$likeCountResult = $likeCountStmt->get_result();
-$likeCountRow = $likeCountResult->fetch_assoc();
-$likeCount = $likeCountRow['likeCount'];
+// $likeCountStmt = $conn->prepare("SELECT COUNT(*) as likeCount FROM reply WHERE kontenID = ?");
+// $likeCountStmt->bind_param("i", $threadID);
+// $likeCountStmt->execute();
+// $likeCountResult = $likeCountStmt->get_result();
+// $likeCountRow = $likeCountResult->fetch_assoc();
+// $likeCount = $likeCountRow['likeCount'];
 
 
 // Now proceed with the rest of the thread_specific.php code
@@ -53,42 +53,50 @@ $likeCount = $likeCountRow['likeCount'];
     <button id="create-thread" onclick="document.getElementById('thread-creation-form').style.display='block'">Create Thread</button>
 
     <!-- List of threads -->
-    <div id="thread-list">
-        <?php
-        if ($result->num_rows > 0) {
-            // Iterate over each thread and display it
-            while ($thread = $result->fetch_assoc()) {
-                // Conditional display of buttons based on thread status and user session
-                
-                    echo "<div class='thread'>";
-                    echo "<p>" . nl2br(htmlspecialchars($thread['isi'])) . "</p>";
-                    echo '<form action="like_thread.php" method="POST">';
-                    echo '<input type="hidden" name="kontenID" value="' . $threadID . '">';
-                    echo '<input type="hidden" name="topicIdOrName" value="' . $selectedTopic . '">';
-                    // Conditional display of buttons based on thread status and user session
-                    if ($thread['userID'] !== $_SESSION['userID']) {
-                        // Like button and like count display
-                        echo '<input type="hidden" name="redirect" value="thread">'; // Redirect back to thread.php
-                        echo '<button type="submit" name="like">Like</button>';
-                    } elseif ($thread['status'] === 'OPEN') {
-                        echo "<button class='solved-btn'>Mark as Solved</button>";
-                    }
-                    echo '</form>';
-                    echo '<p>Likes: ' . $likeCount . '</p>';
-                    echo "<button class='reply-btn'>Reply</button>";
-                    
-                    echo "</div>"; // Close your thread div here
-                
-                // Add a button to view replies for each thread
-                echo "<a href='thread_specific.php?id=" . $thread['kontenID'] . "'>lihat balasan</a>";
+<div id="thread-list">
+    <?php
+    if ($result->num_rows > 0) {
+        // Iterate over each thread and display it
+        while ($thread = $result->fetch_assoc()) {
+            echo "<div class='thread'>";
+            echo "<p>" . nl2br(htmlspecialchars($thread['isi'])) . "</p>";
 
-                echo "</div>";
+            // Fetch the count of active likes for each thread
+            $likeCountStmt = $conn->prepare("SELECT SUM(poin) as likeCount FROM likedReply WHERE kontenID = ? AND replyID IS NULL");
+            $likeCountStmt->bind_param("i", $thread['kontenID']);
+            $likeCountStmt->execute();
+            $likeCountResult = $likeCountStmt->get_result();
+            $likeCountRow = $likeCountResult->fetch_assoc();
+            $likeCount = $likeCountRow['likeCount'] ?: 0;  // Use the null coalescing operator to default to 0 if null
+
+
+            // Like Button
+            echo '<form action="like_thread.php" method="POST">';
+            echo '<input type="hidden" name="kontenID" value="' . $thread['kontenID'] . '">'; // Corrected to use $thread['kontenID']
+            echo '<input type="hidden" name="topicIdOrName" value="' . $selectedTopic . '">';
+            if ($thread['userID'] !== $_SESSION['userID']) {
+                echo '<input type="hidden" name="redirect" value="thread">'; // Redirect back to thread.php
+                echo '<button type="submit" name="like">Like</button>';
+            } elseif ($thread['status'] === 'OPEN') {
+                echo "<button class='solved-btn'>Mark as Solved</button>";
             }
-        } else {
-            echo "<p>No threads found for this topic.</p>";
+            echo '</form>';
+
+            
+            echo '<p>Likes: ' . $likeCount . '</p>';
+            // echo "<button class='reply-btn'>Reply</button>";
+            
+            // Add a button to view replies for each thread
+            echo "<a href='thread_specific.php?id=" . $thread['kontenID'] . "'>lihat balasan</a>";
+
+            echo "</div>"; // Close the thread div
         }
-        ?>
-    </div>
+    } else {
+        echo "<p>No threads found for this topic.</p>";
+    }
+    ?>
+</div>
+
 
     
     <button onclick="window.location.href='test_page_for_topics.php'">Back</button>
