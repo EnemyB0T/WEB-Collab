@@ -349,22 +349,62 @@ a:hover{
 }
 
 .section2 {
+    display: flex;
+    margin-top: 45px;
+    text-align: left;
+    
+}
+
+.section2 .homeAbout h2{
+    font-size: 40px;
+}
+
+.section2 .homeAbout {
+    text-align: justify;
+    margin-top: 130px;
+    margin-left: 150px;
+    margin-right: 150px;
+    width: 100%;
+}
+
+.section2 .homeAboutImage{
+    margin-right: 80px;
+    margin-top: 20px;
+}
+
+.section2 .homeAbout .homeAboutImg{
+    width: 528px;
+    height: 642px;
+}
+
+.section2 p{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.section3 {
     margin-top: 55px;
     width: 90%;
     text-align: center;
 }
 
-.section2 .spotifyIcon{
-    margin-left: 100px;
-    vertical-align: middle;
+.section3 h2{
+    font-size: 40px;
 }
 
-.section3 {
+.section4 {
+    margin-top: 55px;
+    width: 90%;
+    text-align: center;
+}
+
+
+.section5 {
     margin-top: 45px;
     text-align: center;
 }
 
-.section3 .spotifyIcon{
+.section5 .spotifyIcon{
     margin-left: 100px;
     vertical-align: middle;
 }
@@ -384,15 +424,28 @@ a:hover{
     background: url(images/Homepage1.png);
     background-repeat: no-repeat;
     background-size: cover;
+   
 }
 
 .slide2{
-    background: radial-gradient(#E8EEFA  30%, white 70%);
+    background-image: url(images/Homepage2.png) ;
+    background-repeat: no-repeat;
+    background-position: 15px 90px;
 }
 
 .slide3{
+    background: radial-gradient(#E8EEFA  30%, white 70%);
+}
+
+.slide4{
     background: radial-gradient(#E8EEFA  45%, white 55%);
 }
+
+.slide5{
+    background: radial-gradient(#E8EEFA  30%, white 70%);
+}
+
+
 
 .card {
     align-items: center;
