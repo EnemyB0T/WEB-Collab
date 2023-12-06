@@ -270,16 +270,18 @@ a:hover{
 }
 
 .sub-menu{
-    background: #8DA1D3;
+    background: white;
     padding: 20px;
     margin: 10px;
     border-radius: 5%;
-    border: #000;
+    border: 10px black;
+    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
 }
 
 .user-info{
     display: flex;
     align-items: center;
+    justify-items: center;
 }
 
 .user-info h2{
@@ -328,15 +330,18 @@ a:hover{
 .sub-menu-link span{
     font-size: 22px;
     transition: transform 0.25s ;
+    
 }
 
 .sub-menu-link:hover span{
     transform: translateX(5px);
     font-weight: 700;
+    
 }
 
 .sub-menu-link:hover h3{
     opacity: 1;
+    
 }
 .section1 {
     margin-top: 45px;
