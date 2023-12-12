@@ -47,6 +47,8 @@ try {
     <!-- Include your CSS and JavaScript files here -->
 </head>
 <body>
+    <!-- Button to Profile Page -->
+    <a href="profile.php" class="button">View Profile</a>
     <h1>Forum Threads: <?php echo htmlspecialchars($selectedTopic); ?></h1>
     <!-- Button to create a new thread -->
     <!-- When clicked, JavaScript could show the thread creation form -->
@@ -72,14 +74,14 @@ try {
 
             // Like Button
             echo '<form action="like_thread.php" method="POST">';
-            echo '<input type="hidden" name="kontenID" value="' . $thread['kontenID'] . '">'; // Corrected to use $thread['kontenID']
-            echo '<input type="hidden" name="topicIdOrName" value="' . $selectedTopic . '">';
-            if ($thread['userID'] !== $_SESSION['userID']) {
-                echo '<input type="hidden" name="redirect" value="thread">'; // Redirect back to thread.php
-                echo '<button type="submit" name="like">Like</button>';
-            } elseif ($thread['status'] === 'OPEN') {
-                echo "<button class='solved-btn'>Mark as Solved</button>";
-            }
+                echo '<input type="hidden" name="kontenID" value="' . $thread['kontenID'] . '">'; // Corrected to use $thread['kontenID']
+                echo '<input type="hidden" name="topicIdOrName" value="' . $selectedTopic . '">';
+                if ($thread['userID'] !== $_SESSION['userID']) {
+                    echo '<input type="hidden" name="redirect" value="thread_specific">'; // Redirect back to thread.php
+                    echo '<button type="submit" name="like">Like</button>';
+                } elseif ($thread['status'] === 'OPEN') {
+                    echo "<button class='solved-btn'>Mark as Solved</button>";
+                }
             echo '</form>';
 
             
@@ -104,7 +106,7 @@ try {
     <div id="thread-creation-form" style="display: none;">
         <form action="create_thread.php" method="POST">
             <input type="hidden" name="topik" value="<?php echo htmlspecialchars($selectedTopic); ?>">
-            <textarea name="isi" placeholder="Write y   our thread content here..." required></textarea>
+            <textarea name="isi" placeholder="Write your thread content here..." required></textarea>
             <button type="submit" name="submit">Create Thread</button>
         </form>
     </div>
