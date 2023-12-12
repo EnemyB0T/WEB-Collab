@@ -1,16 +1,27 @@
 <?php
 
-function getUsernameFromUserID($userID, $conn) {
-    $stmt = $conn->prepare("SELECT username FROM user WHERE userID = ?");
+function getUserData($userID, $conn) {
+    // Prepare the SQL statement to retrieve user data along with remaining points
+    $stmt = $conn->prepare("SELECT u.*, n.nilaiUser FROM user u JOIN nilai n ON u.userID = n.userID WHERE u.userID = ?");
+    
+    // Bind the userID parameter
     $stmt->bind_param("i", $userID);
+    
+    // Execute the query
     $stmt->execute();
+    
+    // Get the result
     $result = $stmt->get_result();
-    if ($row = $result->fetch_assoc()) {
-        return $row['username'];
+    
+    // Fetch the user data
+    if ($userData = $result->fetch_assoc()) {
+        return $userData;
     } else {
-        return null; // Or handle this scenario appropriately
+        // Handle the case where no user data is found
+        return null;
     }
 }
+
 
 function getUserLifePoints($userID, $conn) {
     $stmt = $conn->prepare("SELECT life_points FROM user WHERE userID = ?");
