@@ -12,6 +12,27 @@ function getUsernameFromUserID($userID, $conn) {
     }
 }
 
+function getCreatorUserID($kontenID, $replyID, $conn) {
+    // If replyID is provided, fetch the userID from the reply table
+    if ($replyID !== null) {
+        $stmt = $conn->prepare("SELECT userID FROM reply WHERE kontenID = ? AND replyID = ?");
+        $stmt->bind_param("ii", $kontenID, $replyID);
+    } else {
+        // If replyID is not provided, fetch the userID from the konten (thread) table
+        $stmt = $conn->prepare("SELECT userID FROM konten WHERE kontenID = ?");
+        $stmt->bind_param("i", $kontenID);
+    }
+
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        return $row['userID'];
+    } else {
+        return null; // Or handle this scenario appropriately
+    }
+}
+
+
 function getUserLifePoints($userID, $conn) {
     $stmt = $conn->prepare("SELECT life_points FROM user WHERE userID = ?");
     $stmt->bind_param("i", $userID);
@@ -158,6 +179,73 @@ function createThreadOrReply($userID, $isThreadCreation, $conn) {
     }
 }
 
+function handleLikeAction($userID, $isLiking, $kontenID, $replyID, $conn) {
+    // Begin a transaction
+    $conn->begin_transaction();
+
+    try {
+        error_reporting(E_ALL);
+        // Check if the user has previously liked this content or reply
+        $likeCheckStmt = $conn->prepare("SELECT poin FROM likedReply WHERE kontenID = ? AND userID = ? AND (? IS NULL OR replyID = ?)");
+        $replyIDParam = $replyID === null ? null : $replyID;
+        $likeCheckStmt->bind_param("iiii", $kontenID, $userID, $replyID, $replyID);
+        $likeCheckStmt->execute();
+        $likeResult = $likeCheckStmt->get_result();
+
+        if ($like = $likeResult->fetch_assoc()) {
+
+            $pointChange = 0; // Initialize pointChange to 0
+            // User is toggling their like status
+            if ($like['poin'] == 1 && !$isLiking) {
+                $pointChange = -1; // User is un-liking
+            } elseif ($like['poin'] == 0 && $isLiking) {
+                $pointChange = 1;  // User is liking
+            }
+            $newPoinValue = $like['poin'] ^ 1; // Toggle poin value (0 -> 1, 1 -> 0)
+
+            // Update likedReply table
+            $updateStmt = $conn->prepare("UPDATE likedReply SET poin = ? WHERE kontenID = ? AND userID = ? AND (? IS NULL OR replyID = ?)");
+            $updateStmt->bind_param("iiiii", $newPoinValue, $kontenID, $userID, $replyID, $replyIDParam);
+            $updateStmt->execute();
+
+            // Update nilaiLike
+            $nilaiLikeStmt = $conn->prepare("UPDATE nilai SET nilaiLike = nilaiLike + ? WHERE userID = ?");
+            $nilaiLikeStmt->bind_param("ii", $pointChange, $userID);
+            $nilaiLikeStmt->execute();
+
+            // echo '<script>alert("reached this point")</script>';
+        } else {
+            // User is liking for the first time
+            // Deduct a point from nilaiUser if available
+            $nilaiUserStmt = $conn->prepare("UPDATE nilai SET nilaiUser = nilaiUser - 1 WHERE userID = ? AND nilaiUser > 0");
+            $nilaiUserStmt->bind_param("i", $userID);
+            $nilaiUserStmt->execute();
+
+            if ($nilaiUserStmt->affected_rows == 0) {
+                throw new Exception("Insufficient points to like.");
+            }
+
+            // Insert a new like record
+            $insertStmt = $conn->prepare("INSERT INTO likedReply (kontenID, replyID, userID, poin, dateCreated) VALUES (?, ?, ?, 1, NOW())");
+            
+            $insertStmt->bind_param("iii", $kontenID, $replyIDParam, $userID);
+            $insertStmt->execute();$replyIDParam = $replyID === null ? null : $replyID;
+        }
+
+        // Update totalNilai
+        if (!adjustUserPoints($userID, $conn)) {
+            throw new Exception("Failed to update total points.");
+        }
+
+        // Commit the transaction
+        $conn->commit();
+        return "Action processed successfully.";
+    } catch (Exception $e) {
+        // Rollback the transaction on error
+        $conn->rollback();
+        return "Error: " . $e->getMessage();
+    }
+}
 
 
 

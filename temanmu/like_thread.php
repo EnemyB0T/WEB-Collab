@@ -34,20 +34,48 @@ if($checkKontenIDResult->num_rows == 0) {
     $likeResult = $likeCheckStmt->get_result();
     
     if ($like = $likeResult->fetch_assoc()) {
-        // Toggle the like if it exists
-        $updateStmt = $conn->prepare("UPDATE likedReply SET poin = poin ^ 1 WHERE kontenID = ? AND userID = ? AND (? IS NULL OR replyID = ?)");
-        $updateStmt->bind_param("iiii", $kontenID, $userID, $replyID, $replyID);
-        $updateStmt->execute();
+        // Toggle the like if it exists (like/un-like)
+        $newPoinValue = ($like['poin'] == 1) ? 0 : 1;
+        echo '<p> new poin value = ' . $newPoinValue . '</p>';
+        // $updateStmt = $conn->prepare("UPDATE likedReply SET poin = ? WHERE kontenID = ? AND userID = ? AND (? IS NULL OR replyID = ?)");
+        // $updateStmt->bind_param("iiiii", $newPoinValue, $kontenID, $userID, $replyID, $replyID);
+        // $updateStmt->execute();
+        // // Check if there was an error in the execution
+        // if ($updateStmt->error) {
+        //     echo '<p>Error in update statement: ' . $updateStmt->error . '</p>';
+        // } else {
+        //     echo '<p>Update executed successfully.</p>';
+        //     }
+    
+        // Determine the like action: true for liking, false for un-liking
+        $isLikingAction = ($newPoinValue == 1);
+        echo '<p> is liking action = ' . $isLikingAction . '</p>';
+
+        // Adjust user points for like/un-like
+        handleLikeAction($userID, $isLikingAction, $kontenID, $replyID, $conn);
     } else {
-        // Insert a new like if it doesn't exist
-        $insertStmt = $conn->prepare("INSERT INTO likedReply (kontenID, replyID, username, userID, poin, dateCreated) VALUES (?, ?, ?, ?, 1, NOW())");
-        // If $replyID is null, you need to bind null explicitly
-        $replyIDParam = $replyID === null ? null : $replyID;
+        // // Insert a new like if it doesn't exist
+        // $insertStmt = $conn->prepare("INSERT INTO likedReply (kontenID, replyID, userID, username, poin, dateCreated) VALUES (?, ?, ?, ?, 1, NOW())");
 
-        // Use a ternary operator to pass the correct variable
-        $insertStmt->bind_param("iisi", $kontenID, $replyIDParam, $username, $userID);
+        // $replyIDParam = $replyID === null ? null : $replyID;
+        // // Check if $replyID is null and bind parameters accordingly
+        
+        // $insertStmt->bind_param("iiis", $kontenID, $replyIDParam, $userID, $username);
 
-        $insertStmt->execute();
+
+        // $insertStmt->execute();
+    
+        // Deduct 1 point from the user for liking, if they have enough points
+        $likeActionResult = handleLikeAction($userID, true, $kontenID, $replyID, $conn);
+        if ($likeActionResult !== "Action processed successfully.") {
+            echo $likeActionResult; // Display the error message
+        } else {
+            // Add 1 point to the thread/reply creator
+            $creatorUserID = getCreatorUserID($kontenID, $replyID, $conn); // Function to get the creator's userID
+            if ($creatorUserID && $creatorUserID != $userID) { // Ensure the creator is not the same as the liker
+                adjustUserPoints($creatorUserID, $conn);
+            }
+        }
     }
 
     // Check for errors
@@ -64,15 +92,15 @@ if($checkKontenIDResult->num_rows == 0) {
     $topicIdOrName = $_POST['topicIdOrName'] ?? 'DefaultTopicName'; // Use a default value for debugging
 
     // Debugging: Display the retrieved topic name
-    // echo '<p>Topic Name: ' . htmlspecialchars($topicIdOrName) . '</p>';
+    echo '<p>Topic Name: ' . htmlspecialchars($topicIdOrName) . '</p>';
 
     // Determine the redirection URL
     $redirectPage = $_POST['redirect'] ?? 'thread'; // Default to 'thread' if not provided
 
-    // echo '<p>Redirect to specific thread ' . htmlspecialchars($redirectPage) . '</p>';
+    echo '<p>Redirect to specific thread ' . htmlspecialchars($redirectPage) . '</p>';
 
     // Debugging: Display the retrieved redirecting page
-    // echo '<p>Redirect Page: ' . htmlspecialchars($redirectPage) . '</p>';
+    echo '<p>Redirect Page: ' . htmlspecialchars($redirectPage) . '</p>';
 
     $redirectUrl = $redirectPage === 'thread_specific' ? 
         "thread_specific.php?id=" . urlencode($kontenID) :
@@ -80,14 +108,14 @@ if($checkKontenIDResult->num_rows == 0) {
 
 
     // Debugging: Display redirect URL
-    echo '<p>Redirect Page: ' . htmlspecialchars($redirectUrl) . '</p>';
+    // echo '<p>Redirect Page: ' . htmlspecialchars($redirectUrl) . '</p>';
 
     // Automatic redirect. Comment to debug
-    header("Location: " . $redirectUrl);
+    // header("Location: " . $redirectUrl);
 
     // Instead of redirecting immediately, present a button to the user. Comment if automatic redirect is activated
-    // echo '<p>Click the button to go back.</p>';
-    // echo '<button onclick="window.location.href=\'' . $redirectUrl . '\'">Go Back</button>';
+    echo '<p>Click the button to go back.</p>';
+    echo '<button onclick="window.location.href=\'' . $redirectUrl . '\'">Go Back</button>';
 
     // Don't forget to call exit to prevent further code execution if necessary
     exit();

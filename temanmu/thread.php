@@ -77,7 +77,7 @@ try {
                 echo '<input type="hidden" name="kontenID" value="' . $thread['kontenID'] . '">'; // Corrected to use $thread['kontenID']
                 echo '<input type="hidden" name="topicIdOrName" value="' . $selectedTopic . '">';
                 if ($thread['userID'] !== $_SESSION['userID']) {
-                    echo '<input type="hidden" name="redirect" value="thread_specific">'; // Redirect back to thread.php
+                    echo '<input type="hidden" name="redirect" value="thread">'; // Redirect back to thread.php
                     echo '<button type="submit" name="like">Like</button>';
                 } elseif ($thread['status'] === 'OPEN') {
                     echo "<button class='solved-btn'>Mark as Solved</button>";
