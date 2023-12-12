@@ -9,8 +9,11 @@ if (isset($_SESSION['userID']) && isset($_POST['kontenID'])) {
     $userID = $_SESSION['userID'];
     $kontenID = $_POST['kontenID'];
     $replyID = $_POST['replyID'] ?? null; // replyID from the POST data, can be null
+
+    // echo '<script>alert("' . $replyID . '")</script>';
+
     $username = getUsernameFromUserID($userID, $conn);
-    echo $username;
+    // echo $username;
 
     // Debugging: Check if kontenID exists in the konten table
 $checkKontenIDStmt = $conn->prepare("SELECT kontenID FROM konten WHERE kontenID = ?");
@@ -61,13 +64,15 @@ if($checkKontenIDResult->num_rows == 0) {
     $topicIdOrName = $_POST['topicIdOrName'] ?? 'DefaultTopicName'; // Use a default value for debugging
 
     // Debugging: Display the retrieved topic name
-    echo '<p>Topic Name: ' . htmlspecialchars($topicIdOrName) . '</p>';
+    // echo '<p>Topic Name: ' . htmlspecialchars($topicIdOrName) . '</p>';
 
     // Determine the redirection URL
     $redirectPage = $_POST['redirect'] ?? 'thread'; // Default to 'thread' if not provided
 
+    // echo '<p>Redirect to specific thread ' . htmlspecialchars($redirectPage) . '</p>';
+
     // Debugging: Display the retrieved redirecting page
-    echo '<p>Redirect Page: ' . htmlspecialchars($redirectPage) . '</p>';
+    // echo '<p>Redirect Page: ' . htmlspecialchars($redirectPage) . '</p>';
 
     $redirectUrl = $redirectPage === 'thread_specific' ? 
         "thread_specific.php?id=" . urlencode($kontenID) :

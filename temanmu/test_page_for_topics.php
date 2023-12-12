@@ -48,7 +48,7 @@ try {
         </select>
         <input type="submit" value="Go">
 
-        <!-- Add this where you want the profile button to appear on thread.php -->
+        <!-- Button to Profile Page -->
         <a href="profile.php" class="button">View Profile</a>
 
     </form>

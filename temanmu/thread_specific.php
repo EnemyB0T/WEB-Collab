@@ -19,12 +19,12 @@ $replyStmt->execute();
 $replies = $replyStmt->get_result();
 
 // Fetch the count of likes for the thread
-$likeCountStmt = $conn->prepare("SELECT COUNT(*) as likeCount FROM reply WHERE kontenID = ?");
-$likeCountStmt->bind_param("i", $threadID);
-$likeCountStmt->execute();
-$likeCountResult = $likeCountStmt->get_result();
-$likeCountRow = $likeCountResult->fetch_assoc();
-$likeCount = $likeCountRow['likeCount'];
+// $likeCountStmt = $conn->prepare("SELECT COUNT(*) as likeCount FROM reply WHERE kontenID = ?");
+// $likeCountStmt->bind_param("i", $threadID);
+// $likeCountStmt->execute();
+// $likeCountResult = $likeCountStmt->get_result();
+// $likeCountRow = $likeCountResult->fetch_assoc();
+// $likeCount = $likeCountRow['likeCount'];
 
 
 ?>
@@ -35,9 +35,12 @@ $likeCount = $likeCountRow['likeCount'];
     <!-- Head content -->
 </head>
 <body>
+    <!-- Button to Profile Page -->
+    <a href="profile.php" class="button">View Profile</a>
     <h1><?php echo htmlspecialchars($thread['topik']); ?></h1>
     <p><?php echo htmlspecialchars($thread['isi']); ?></p>
     <p>Created by: <?php echo htmlspecialchars($thread['username']); ?></p>
+    
     <!-- Display like button and number of likes here -->
 
     <h2>Replies</h2>
@@ -50,18 +53,25 @@ $likeCount = $likeCountRow['likeCount'];
         echo "</div>";
 
         echo "<div class='thread'>";
-        // echo "<p>" . nl2br(htmlspecialchars($thread['isi'])) . "</p>";
         // Check if the logged-in user is the thread creator
-        $isThreadCreator = ($_SESSION['userID'] ?? null) == $reply['userID'];
-            // Like button and like count display
-            echo '<form action="like_thread.php" method="POST">';
-            echo '<input type="hidden" name="kontenID" value="' . $threadID . '">';
-            // Disable the like button if the logged-in user is the thread creator
-            $disabledAttribute = $isThreadCreator ? 'disabled' : '';
-            echo '<input type="hidden" name="redirect" value="thread_specific">'; // Redirect back to thread_specific.php
-            echo '<button type="submit" name="like" ' . $disabledAttribute . '>Like</button>';
-            echo '</form>';
-            echo '<p>Likes: ' . $likeCount . '</p>';
+         // Fetch the count of active likes for each thread
+         $likeCountStmt = $conn->prepare("SELECT SUM(poin) as likeCount FROM likedReply WHERE kontenID = ? AND replyID = ?");
+         $likeCountStmt->bind_param("ii", $reply['kontenID'], $reply['replyID']);
+         $likeCountStmt->execute();
+         $likeCountResult = $likeCountStmt->get_result();
+         $likeCountRow = $likeCountResult->fetch_assoc();
+         $likeCount = $likeCountRow['likeCount'] ?: 0;  // Use the null coalescing operator to default to 0 if null
+        // Like Button
+        echo '<form action="like_thread.php" method="POST">';
+        echo '<input type="hidden" name="kontenID" value="' . $reply['kontenID'] . '">'; // Corrected to use $thread['kontenID']
+        echo '<input type="hidden" name="replyID" value="' . $reply['replyID'] . '">';
+        echo '<input type="hidden" name="topicIdOrName" value="' . $selectedTopic . '">';
+        echo '<input type="hidden" name="redirect" value="thread_specific">'; // Redirect back to thread.php
+        if ($reply['userID'] !== $_SESSION['userID']) {
+            echo '<button type="submit" name="like">Like</button>';
+        }   
+        echo '</form>';
+        echo '<p>Likes: ' . $likeCount . '</p>';
         
         echo "</div>"; // Close your thread div here
 
