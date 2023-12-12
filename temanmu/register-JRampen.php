@@ -114,28 +114,28 @@ if (isset($_POST['submit'])) {
             <br><br>
 
             <!-- Code confirm -->
-            <div class="code-confirm">
+            <!-- <div class="code-confirm">
                 <label for="code">Your&nbspcode:</label> 
                 <input type="Code" placeholder="Enter code" name="Code confirm">
                 <button class="sbutton">Send Code</button>
             </div>
-            <br><br>
+            <br><br> -->
 
             <!-- Name -->
-            <label for="full name">Your full name:</label>
+            <label for="full name">Your username</label>
             <input type="text" placeholder="Enter full name" name="username" value="<?php echo $username; ?>" required>
 
             <!-- checklist -->
-            <div class="subcontainer">
+            <!-- <div class="subcontainer">
                 <label>
                   <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Agree with our <a href="#">Terms and Condition</a> </p>
                 </label>
                   <p><input type="checkbox" check="checked" name="syarat & ketentuan"> Updates and promotion will be sent via email </p>
-            </div>
+            </div> -->
 
             <div class="submit-button">
             <!-- Submit button -->
-                <button name="submit">Register</button>
+                <button  name="submit">Register</button>
 
             </div>
             <!-- Sign up link -->

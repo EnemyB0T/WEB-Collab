@@ -47,6 +47,10 @@ try {
             ?>
         </select>
         <input type="submit" value="Go">
+
+        <!-- Add this where you want the profile button to appear on thread.php -->
+        <a href="profile.php" class="button">View Profile</a>
+
     </form>
     <button onclick="window.location.href='logout.php'">Logout</button>
 </body>

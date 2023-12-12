@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temanmu</title>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    
+</head>
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+          <i class="fa fa-bars"></i>
+        </label>
+        <label class="logo"><a href="homepage.html">Temanmu.com </a></label>
+        <ul>
+          <li><a href="homepage.html">Beranda</a></li>
+          <li><a href="topik.html">Topik</a></li>
+          <li><a href="chat.html">Curhatanmu</a></li>
+          <li><a href="faq.html">Tentang kami</a></li>
+          <li><a href="testimoni.html">Testimoni</a></li>
+          <li><img class="userIcon" src="images/Group.png" alt="User" onclick="toggleMenu()">
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <h2>User</h2>
+                    </div>
+                    <hr>
+                    <a href="profile.html" class="sub-menu-link">
+                        <h3>Edit Profile</h3>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <h3>Logout</h3>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div id = "slide1" class="slides slide1" >
+            <section class="section1">
+                <h1>Temanmu, pendengarmu</h1>
+                <p>&nbsp;</p>
+                <p>Temukan temanmu untuk mendengarkan curhatanmu disini</p>
+                <div><a href="#section3"><button class="btn">Telusuri Temanmu</button></a></div>
+            </section>
+        </div>
+
+        <div class="slides slide2" id="section2">
+            <section class="section2">
+                <div class="homeAbout">
+                    <h2>Tentang Kami</h2>
+                    <p>Temanmu adalah sebuah website yang dirancang untuk pengguna dapat bercerita, 
+                        curhat, menyuarakan pendapat dan juga merespon cerita dari pengguna lain. 
+                        Temanmu hadir karena kebanyakan orang enggan atau sulit untuk menyampaikan hal 
+                        mengenai perasaannya. Kami ingin pengguna merasa didengar dan leluasa saat 
+                        bercerita,  sehingga kami menciptakan Temanmu.</p>
+                </div>
+                <div class="homeAboutImage">
+                    <img class="homeAboutImg" src="images/Homepage3.png" alt="HomeAbout">
+                </div>
+            </section>
+        </div>
+
+        <div class="slides slide3">
+            <section class="section3">
+                <h2>Sistem Poinmu!</h2>
+                <p>&nbsp;</p>
+                    <div class="carousel" data-flickity='{ "draggable": true, "pageDots": false}'>    
+                        <div class="card"><img src="images/Heart Card 1.png" alt="card1"></div>
+                        <div class="card"><img src="images/Heart Card 2.png" alt="card2"></div>
+                        <div class="card"><img src="images/Heart Card 3.png" alt="card3"></div>
+                        <div class="card"><img src="images/Heart Card 4.png" alt="card4"></div>
+                    </div>
+            </section>
+        </div>
+        
+        <div class="slides slide4" id="section3">
+            <section class="section4">
+                <h4>Yuk Curhat!</h4>
+                <div><a href="login.html"><button class="btn">Mulai Curhat</button></a></div>
+            </section>
+        </div>
+
+        <div class="slides slide5">
+            <section class="section5">
+                <h2>Hubungkan ke <img class="spotifyIcon" src="images/Spotify.png" alt="Spotify"></h2>
+                <p>&nbsp;</p>
+                <p>Dengan menghubungkan aplikasi spotify, kamu bisa membalas cerita</p>
+                <p>seseorang menggunakan lagu yang menurut kamu relatable dengan</p>
+                <p>ceritanya!</p>
+                <div><button class="btn">Hubungkan</button></div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="leftContent">
+                <section class="sectionFooterLogo">
+                    <h2><a href="homepage.html">Temanmu.com </a></h2>
+                    <p>Temanmu, pendengarmu</p>
+                    <p>&nbsp;</p>
+                    <p>
+                        <a href="#"><img class="footerIcon" src="images/Facebook.png" alt="Facebook"></a>
+                        <a href="#"><img class="footerIcon" src="images/Twitter.png" alt="Twitter"></a>
+                        <a href="#"><img class="footerIcon" src="images/Instagram.png" alt="Instagram"></a>
+                    </p>
+                </section>
+            </div>
+            <div class="centerContent">
+                <h3>Sitemap</h3>
+                <ul>
+                    <li><a href="homepage.html">Beranda</a></li>
+                    <li><a href="topik.html">Topik</a></li>
+                    <li><a href="chat.html">Curhatanmu</a></li>
+                    <li><a href="faq.html">Tentang</a></li>
+                    <li><a href="testimoni.html">Testimoni</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
+
+    </script>
+</body>
+
+</html>
