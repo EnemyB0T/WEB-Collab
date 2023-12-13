@@ -54,7 +54,7 @@ if($checkKontenIDResult->num_rows == 0) {
         // Adjust user points for like/un-like
         handleLikeAction($userID, $isLikingAction, $kontenID, $replyID, $conn);
     } else {
-        // // Insert a new like if it doesn't exist
+        // Insert a new like if it doesn't exist
         // $insertStmt = $conn->prepare("INSERT INTO likedReply (kontenID, replyID, userID, username, poin, dateCreated) VALUES (?, ?, ?, ?, 1, NOW())");
 
         // $replyIDParam = $replyID === null ? null : $replyID;
@@ -111,11 +111,11 @@ if($checkKontenIDResult->num_rows == 0) {
     // echo '<p>Redirect Page: ' . htmlspecialchars($redirectUrl) . '</p>';
 
     // Automatic redirect. Comment to debug
-    // header("Location: " . $redirectUrl);
+    header("Location: " . $redirectUrl);
 
     // Instead of redirecting immediately, present a button to the user. Comment if automatic redirect is activated
-    echo '<p>Click the button to go back.</p>';
-    echo '<button onclick="window.location.href=\'' . $redirectUrl . '\'">Go Back</button>';
+    // echo '<p>Click the button to go back.</p>';
+    // echo '<button onclick="window.location.href=\'' . $redirectUrl . '\'">Go Back</button>';
 
     // Don't forget to call exit to prevent further code execution if necessary
     exit();

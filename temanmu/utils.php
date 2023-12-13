@@ -226,10 +226,10 @@ function handleLikeAction($userID, $isLiking, $kontenID, $replyID, $conn) {
             }
 
             // Insert a new like record
-            $insertStmt = $conn->prepare("INSERT INTO likedReply (kontenID, replyID, userID, poin, dateCreated) VALUES (?, ?, ?, 1, NOW())");
-            
-            $insertStmt->bind_param("iii", $kontenID, $replyIDParam, $userID);
-            $insertStmt->execute();$replyIDParam = $replyID === null ? null : $replyID;
+            $insertStmt = $conn->prepare("INSERT INTO likedReply (kontenID, replyID, userID, poin, username, dateCreated) VALUES (?, ?, ?, ?, 1, NOW())");
+            $username = getUsernameFromUserID($userID, $conn);
+            $insertStmt->bind_param("iiis", $kontenID, $replyIDParam, $userID, $username);
+            $insertStmt->execute();
         }
 
         // Update totalNilai

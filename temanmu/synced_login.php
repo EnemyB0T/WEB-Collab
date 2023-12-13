@@ -73,7 +73,7 @@ try{
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </head>
 <body>
-    <nav>
+<nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
           <i class="fa fa-bars"></i>
@@ -83,7 +83,7 @@ try{
           <li><a href="homepage.html">Beranda</a></li>
           <li><a href="topik.html">Topik</a></li>
           <li><a href="chat.html">Curhatanmu</a></li>
-          <li><a href="faq.html">Tentang</a></li>
+          <li><a href="faq.html">Tentang kami</a></li>
           <li><a href="testimoni.html">Testimoni</a></li>
           <li><img class="userIcon" src="images/Group.png" alt="User" onclick="toggleMenu()">
             <div class="sub-menu-wrap" id="subMenu">
@@ -92,7 +92,7 @@ try{
                         <h2>Guest</h2>
                     </div>
                     <hr>
-                    <a href="login.html" class="sub-menu-link">
+                    <a href="synced_login.php" class="sub-menu-link">
                         <h3>Login</h3>
                         <span>></span>
                     </a>
